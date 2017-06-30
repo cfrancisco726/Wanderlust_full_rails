@@ -1,0 +1,25 @@
+<%= form_for :trip do |f| %>
+  <p>
+    <%= f.label :budget %><br>
+    <%= f.text_field :budget %>
+  </p>
+
+  <p>
+    <%= f.label :origin %><br>
+    <%= f.text_field :origin %>
+  </p>
+
+  <p>
+    <%= f.label :date %><br>
+    <%= f.date_field :date %>
+  </p>
+
+  <p>
+    <%= f.label :passengers %><br>
+    <%= f.number_field :passengers %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+  <% end %>
