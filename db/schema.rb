@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170630201815) do
     t.string "origin"
     t.date "date"
     t.integer "passengers"
+    t.boolean "booked?"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
