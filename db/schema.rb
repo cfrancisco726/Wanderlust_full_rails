@@ -40,13 +40,13 @@ ActiveRecord::Schema.define(version: 20170630201815) do
   create_table "trips", force: :cascade do |t|
     t.integer "budget"
     t.string "origin"
-    t.date "date"
+    t.date "departure_date"
+    t.date "arrival_date"
     t.integer "passengers"
     t.boolean "booked?"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

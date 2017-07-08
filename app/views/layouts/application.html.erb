@@ -4,11 +4,22 @@
     <title>WanderlustRails</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
   </head>
 
   <body>
+
+    <% if logged_in? %>
+      <a href = "/logout">Log out</a><br>
+      <a href = "/users/<%= current_user.id %>"><%= current_user.name %></a><br>
+    <% else %>
+      <a href = "/login">Log in</a><br>
+      <a href = "/users/new">Register</a><br>
+    <% end %>
+
+    <%= link_to 'Home', root_path %>
+
     <%= yield %>
   </body>
 </html>
