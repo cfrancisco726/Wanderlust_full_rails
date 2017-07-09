@@ -10,14 +10,17 @@ class TripController < ApplicationController
     arrival_date = trip_params[:arrival_date]
     passengers = trip_params[:passengers]
     budget = trip_params[:budget]
-    parsed_data = JSON.parse(api_call(req_body(origin, departure_date, arrival_date, passengers, budget)).body)
+    parsed_data_den = JSON.parse(api_call(req_body_den(origin, departure_date, arrival_date, passengers, budget)).body)
+    @array_flights_den = parse_api_response(parsed_data_den)
+    parsed_data_den = JSON.parse(api_call(req_body_den(origin, departure_date, arrival_date, passengers, budget)).body)
 
-    array_flights = parse_api_response(parsed_data)
-
-
-
+    cheapest_flights = []
     binding.pry
+    # @array_flights.each do |flight|
+    #   while cheapest_flights.
+    # end
 
+    render "trip_details"
   end
 
   private
