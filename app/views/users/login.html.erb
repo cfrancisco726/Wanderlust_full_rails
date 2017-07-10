@@ -1,15 +1,9 @@
-<%= form_for @user do |f| %>
-  <p>
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </p>
 
-  <p>
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </p>
 
-  <p>
-    <%= f.submit "Log in"%>
-  </p>
-  <% end %>
+
+<%= bootstrap_form_for(@user) do |f| %>
+  <%= f.email_field :email %>
+  <%= f.password_field :password %>
+  <%= f.submit "Log In" %>
+<% end %>
+
