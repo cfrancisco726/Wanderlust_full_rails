@@ -11,9 +11,15 @@ body {
   background-image: url("background.jpg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   -o-background-size: cover;
   background-size: cover;
   overflow: none;
+}
+
+#home {
+  background-image: assets-data-url("logo.jpg")
 }
 
 .em-text{
