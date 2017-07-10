@@ -15,6 +15,7 @@
   </head>
 
   <body>
+  <nav>
   <div class="jumbotron">
     <% if logged_in? %>
       <a href = "/logout">Log out</a><br>
@@ -23,26 +24,12 @@
       <a href = "/login">Log in</a><br>
       <a href = "/users/new">Register</a><br>
     <% end %>
-</div>
+    <h1 class="center logo"><img src="../assets/images/logo.jpg" alt="Wanderlust"></img></h1>
+    <p class="center color"> Your next adventure is just a budget away</p>
     <%= link_to 'Home', root_path %>
+    </div>
+</nav>
 
-  <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-
-        <a class="navbar-brand" href=""> <div class="">
-  <h1 class="center logo"><img src="../../../assets/images/wanderlust_images/logo_int.jpg" alt="Wanderlust"></img></h1>
-  <p class="center color"> Your next adventure is just a budget away</p>
-  </div></a>
-        <span class="nav navbar-nav navbar-right">
-          <Link to="/signup" class="color"> Sign up | </Link> 
-          <Link to="/login" class="color"> Login </Link>
-        </span>
-
-        </div>
-
-      </div>
-    </nav>
     <%= yield %>
   </body>
 </html>
