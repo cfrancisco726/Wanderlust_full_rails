@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'better_errors'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rest-client', '~> 1.8'
