@@ -1,3 +1,16 @@
 <br>
+<br>
 
-<%= @flight_data.saleTotal %>
+<%if logged_in? %>
+  <a href="">Save trip<a>
+<%end%><br>
+
+These are all the attractions that you can go to in <%=convert_airportcode_to_destination(@flight_data[:destination])%><br>
+<% @attractions.each do |attraction| %>
+  Name of attraction: <%= attraction.name %><br>
+  Address: <%= attraction.formatted_address %><br>
+  <% if attraction.photos[0] != nil %>
+    <%= attraction.photos[0].photo_reference %>
+  <% end %>
+  <br><br>
+<% end %>
