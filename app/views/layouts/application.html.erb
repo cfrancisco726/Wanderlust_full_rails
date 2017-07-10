@@ -18,15 +18,15 @@
   <nav>
   <div class="jumbotron">
     <% if logged_in? %>
-      <a href = "/logout">Log out</a><br>
-      <a href = "/users/<%= current_user.id %>"><%= current_user.name %></a><br>
+      <a class="color" href = "/logout">Log out</a><br>
+      <a class="color" href = "/users/<%= current_user.id %>"><%= current_user.name %></a><br>
     <% else %>
-      <a href = "/login">Log in</a><br>
-      <a href = "/users/new">Register</a><br>
+      <a class="color" href = "/login">Log in</a><br>
+      <a class="color" href = "/users/new">Register</a><br>
     <% end %>
-    <h1 class="center logo"><img src="../assets/images/logo.jpg" alt="Wanderlust"></img></h1>
+    <h1 class="center logo"><img src="/assets/logo.jpg" alt="Wanderlust"></img></h1>
     <p class="center color"> Your next adventure is just a budget away</p>
-    <%= link_to 'Home', root_path %>
+    <p class="color"><%= link_to 'Home', root_path %></p>
     </div>
 </nav>
 

@@ -1,17 +1,17 @@
-<h5> New Trip</h5>
+<h5 class="color"> New Trip</h5>
 
 
 
 <%= form_for @trip, url: {action: "create"}, html: {class: "experiment_form"} do |f| %>
-  <p><%= f.label :budget %></p>
+  <p class="color"><%= f.label :budget %></p>
   <p><%= f.text_field :budget %></p>
-  <p><%= f.label :origin %></p>
+  <p class="color"><%= f.label :origin %></p>
   <p><%= f.text_field :origin%></p>
-  <p><%= f.label :passengers %></p>
+  <p class="color"><%= f.label :passengers %></p>
   <p><%= f.text_field :passengers%></p>
-  <p><%= f.label :departure_date %></p>
+  <p class="color"><%= f.label :departure_date %></p>
   <p><%= f.date_field :departure_date %></p>
-  <p><%= f.label :arrival_date %></p>
+  <p class="color"><%= f.label :arrival_date %></p>
   <p><%= f.date_field :arrival_date %></p>
 
   <p><%= f.submit "Submit" %></p>

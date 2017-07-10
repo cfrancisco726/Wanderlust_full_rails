@@ -1,27 +1,27 @@
 <body>
 <%= form_for :trip do |f| %>
   <p>
-    <%= f.label :budget %><br>
+    <span class="color"><%= f.label :budget %></span><br>
     <%= f.text_field :budget %>
   </p>
 
   <p>
-    <%= f.label :origin %><br>
+    <span class="color"><%= f.label :origin %></span><br>
     <%= f.text_field :origin %>
   </p>
 
   <p>
-    <%= f.label :date %><br>
+   <span class="color"><%= f.label :date %></span><br>
     <%= f.date_field :date %>
   </p>
 
   <p>
-    <%= f.label :passengers %><br>
+   <span class="color"><%= f.label :passengers %></span><br>
     <%= f.number_field :passengers %>
   </p>
 
   <p>
-    <%= f.submit %>
+    <span class="color"><%= f.submit %></span>
   </p>
   <% end %>
 </body>
