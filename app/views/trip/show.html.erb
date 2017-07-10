@@ -1,3 +1,10 @@
 <br>
+<br>
+These are all the attractions that you can go to in<br> <%=convert_airportcode_to_destination(@flight_data[:destination])%>
+<% @attractions.each do |attraction| %>
+  Name of attraction: <%= attraction.name %><br>
+  Address: <%= attraction.formatted_address %><br>
+  <%= attraction.photos[0].photo_reference %>
 
-<%= @flight_data.saleTotal %>
+  <br><br>
+<% end %>

@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'better_errors'
+gem 'google_places'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rest-client', '~> 1.8'
