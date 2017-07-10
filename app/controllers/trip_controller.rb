@@ -35,8 +35,7 @@ class TripController < ApplicationController
       flight_data.save
     end
 
-
-
+    
     render "trip_details"
   end
 
