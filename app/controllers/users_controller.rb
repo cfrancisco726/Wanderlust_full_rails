@@ -7,6 +7,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def save_trip
+    @response = ResponseFlightData.find_by(id: params[:flight_id])
+    @user_trip_save = SaveUserTrip.new({saleTotal: @response.saleTotal, carrier: @response.carrier, arrival_time_when_leaving_home: @response.arrival_time_when_leaving_home, departure_time_when_leaving_home: @response.departure_time_when_leaving_home, arrival_time_when_coming_home: @response.arrival_time_when_coming_home, departure_time_when_coming_home: @response.departure_time_when_coming_home, origin: @response.origin, destination: @response.destination, user_id: current_user.id})
+    @user_trip_save.save
+    binding.pry
+  end
+
   def create
     @user = User.new(user_params)
 
@@ -44,6 +51,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :flight_id)
   end
 end

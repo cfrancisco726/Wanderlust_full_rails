@@ -7,8 +7,8 @@ class TripController < ApplicationController
     @flight_data = ResponseFlightData.find(params[:id])
     @client = GooglePlaces::Client.new("AIzaSyAaWoHUrKrTUmI4tlDQi89bHPNWEYO34tQ")
     @attractions = @client.spots_by_query("Vacation attractions by #{convert_airportcode_to_destination(@flight_data[:destination])}")
-    binding.pry
   end
+
 
   def create
 
@@ -38,8 +38,6 @@ class TripController < ApplicationController
       flight_data = ResponseFlightData.new({saleTotal: flight["saleTotal"], carrier: flight["carrier"], arrival_time_when_leaving_home: flight["arrival_time_when_leaving_home"], departure_time_when_leaving_home: flight["departure_time_when_leaving_home"], arrival_time_when_coming_home: flight["arrival_time_when_coming_home"], departure_time_when_coming_home: flight["departure_time_when_coming_home"], origin: flight["origin"], destination: flight["destination"]})
       flight_data.save
     end
-
-
     render "trip_details"
   end
 
