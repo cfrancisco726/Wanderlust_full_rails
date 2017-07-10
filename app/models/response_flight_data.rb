@@ -1,0 +1,2 @@
+class ResponseFlightData < ApplicationRecord
+end

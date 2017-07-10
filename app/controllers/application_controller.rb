@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :req_body, :api_call, :parse_api_response
 
   def current_user
     @user ||= User.find_by(id: session[:user_id])
@@ -10,29 +10,73 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  def req_body(origin, departure_date, arrival_date, passengers, budget)
+  def req_body_den(origin, departure_date, arrival_date, passengers, budget)
     {"request": {
           "passengers": { "adultCount": passengers.to_i },
           "slice": [{
               "origin": origin,
-              "destination": ['LAX','DEN'],
+              "destination": ['DEN'],
               "date": departure_date,
               "maxStops": 0,
             },
             {
-              "origin": ['LAX','DEN'],
+              "origin": ['DEN'],
               "destination": origin,
               "date": arrival_date
             }
           ],
           "maxPrice": "USD#{budget}",
-          "solutions": "5"
+          "solutions": "10"
         }
       }
   end
 
+  def req_body_lax(origin, departure_date, arrival_date, passengers, budget)
+    {"request": {
+          "passengers": { "adultCount": passengers.to_i },
+          "slice": [{
+              "origin": origin,
+              "destination": ['LAX'],
+              "date": departure_date,
+              "maxStops": 0,
+            },
+            {
+              "origin": ['LAX'],
+              "destination": origin,
+              "date": arrival_date
+            }
+          ],
+          "maxPrice": "USD#{budget}",
+          "solutions": "10"
+        }
+      }
+  end
+
+  def req_body_mia(origin, departure_date, arrival_date, passengers, budget)
+    {"request": {
+          "passengers": { "adultCount": passengers.to_i },
+          "slice": [{
+              "origin": origin,
+              "destination": ['MIA'],
+              "date": departure_date,
+              "maxStops": 0,
+            },
+            {
+              "origin": ['MIA'],
+              "destination": origin,
+              "date": arrival_date
+            }
+          ],
+          "maxPrice": "USD#{budget}",
+          "solutions": "10"
+        }
+      }
+  end
+
+
+
   def api_call(body)
-    RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyAaLHEBBLCI4aHLNu2jHiiAQGDbCunBQX0',
+    RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyDQlVvdzPVGCZ7UZdovGEeyREAXvKdteV0',
     body.to_json, :content_type => :json
   end
 
