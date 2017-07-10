@@ -3,11 +3,11 @@
 
 Flights to Denver<br>
 <% @cheapest_flights[0..9].each_with_index do |flight, index| %>
-  Ticket price: <%= flight["saleTotal"] %>
-  <%= flight["departure_time_when_leaving_home"]%> ----- <% flight["arrival_time_when_leaving_home"] %><br>
-  <%= flight["origin"] %> |         | <%= flight["destination"] %><br>
-  <%= flight["departure_time_when_coming_home"]%> ----- <% flight["arrival_time_when_coming_home"] %><br>
-  <%= flight["destination"] %> |         | <%= flight["destination"] %><br>
+  Ticket price: <%= flight["saleTotal"] %><br>
+  <%= flight["departure_time_when_leaving_home"]%> ----- <%= flight["arrival_time_when_leaving_home"] %><br>
+  <%= flight["origin"] %> ----------------------------- <%= flight["destination"] %><br>
+  <%= flight["departure_time_when_coming_home"]%> ----- <%= flight["arrival_time_when_coming_home"] %><br>
+  <%= flight["destination"] %> -----------------------------<%= flight["origin"] %><br>
   <a href="trip/<%=index+1%>">Book hotel<a><br>
 <% end %>
 
@@ -16,6 +16,11 @@ Flights to Denver<br>
 
 Flights to Los Angeles World Airports <br>
 <% @cheapest_flights[10..19].each_with_index do |flight, index| %>
+  Ticket price: <%= flight["saleTotal"] %><br>
+  <%= flight["departure_time_when_leaving_home"]%> ----- <%= flight["arrival_time_when_leaving_home"] %><br>
+  <%= flight["origin"] %> ----------------------------- <%= flight["destination"] %><br>
+  <%= flight["departure_time_when_coming_home"]%> ----- <%= flight["arrival_time_when_coming_home"] %><br>
+  <%= flight["destination"] %> -----------------------------<%= flight["origin"] %><br>
   <a href="trip/<%=index+11%>">Book hotel<a><br>
 <% end %>
 
@@ -24,5 +29,10 @@ Flights to Los Angeles World Airports <br>
 
 Flights to Miami <br>
 <% @cheapest_flights[20..29].each_with_index do |flight, index| %>
+  Ticket price: <%= flight["saleTotal"] %><br>
+  <%= flight["departure_time_when_leaving_home"]%> ----- <%= flight["arrival_time_when_leaving_home"] %><br>
+  <%= flight["origin"] %> ----------------------------- <%= flight["destination"] %><br>
+  <%= flight["departure_time_when_coming_home"]%> ----- <%= flight["arrival_time_when_coming_home"] %><br>
+  <%= flight["destination"] %> -----------------------------<%= flight["origin"] %><br>
   <a href="trip/<%=index+21%>">Book hotel<a><br>
 <% end %>
