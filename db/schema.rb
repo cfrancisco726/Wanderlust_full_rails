@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170709225820) do
+ActiveRecord::Schema.define(version: 20170710154801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,20 @@ ActiveRecord::Schema.define(version: 20170709225820) do
     t.string "departure_time_when_coming_home"
     t.string "origin"
     t.string "destination"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "save_user_trips", force: :cascade do |t|
+    t.string "saleTotal"
+    t.string "carrier"
+    t.string "arrival_time_when_leaving_home"
+    t.string "departure_time_when_leaving_home"
+    t.string "arrival_time_when_coming_home"
+    t.string "departure_time_when_coming_home"
+    t.string "origin"
+    t.string "destination"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  saleTotal: MyString
+  carrier: MyString
+  arrival_time_when_leaving_home: MyString
+  departure_time_when_leaving_home: MyString
+  arrival_time_when_coming_home: MyString
+  departure_time_when_coming_home: MyString
+  origin: MyString
+  destination: MyString
+  user_id: 1
+
+two:
+  saleTotal: MyString
+  carrier: MyString
+  arrival_time_when_leaving_home: MyString
+  departure_time_when_leaving_home: MyString
+  arrival_time_when_coming_home: MyString
+  departure_time_when_coming_home: MyString
+  origin: MyString
+  destination: MyString
+  user_id: 1
