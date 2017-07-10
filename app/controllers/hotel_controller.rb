@@ -1,2 +1,0 @@
-class HotelController < ApplicationController
-end
