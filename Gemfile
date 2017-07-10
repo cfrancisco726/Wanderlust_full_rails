@@ -7,6 +7,9 @@ end
 
 gem 'better_errors'
 gem 'google_places'
+gem 'coffee-rails'
+gem 'jquery-rails'
+gem 'binding_of_caller'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rest-client', '~> 1.8'
@@ -23,6 +26,8 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'bcrypt'
 gem 'activerecord-reset-pk-sequence'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 
 # Use CoffeeScript for .coffee assets and views
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

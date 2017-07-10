@@ -3,13 +3,19 @@
   <head>
     <title>WanderlustRails</title>
     <%= csrf_meta_tags %>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>    
+
+
+
 
 
   </head>
 
   <body>
-
+  <div class="jumbotron">
     <% if logged_in? %>
       <a href = "/logout">Log out</a><br>
       <a href = "/users/<%= current_user.id %>"><%= current_user.name %></a><br>
@@ -17,9 +23,26 @@
       <a href = "/login">Log in</a><br>
       <a href = "/users/new">Register</a><br>
     <% end %>
-
+</div>
     <%= link_to 'Home', root_path %>
 
+  <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+
+        <a class="navbar-brand" href=""> <div class="">
+  <h1 class="center logo"><img src="../../../assets/images/wanderlust_images/logo_int.jpg" alt="Wanderlust"></img></h1>
+  <p class="center color"> Your next adventure is just a budget away</p>
+  </div></a>
+        <span class="nav navbar-nav navbar-right">
+          <Link to="/signup" class="color"> Sign up | </Link> 
+          <Link to="/login" class="color"> Login </Link>
+        </span>
+
+        </div>
+
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
