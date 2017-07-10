@@ -5,10 +5,13 @@ class TripController < ApplicationController
 
   def show
     @flight_data = ResponseFlightData.find(params[:id])
+    @client = GooglePlaces::Client.new("AIzaSyAaWoHUrKrTUmI4tlDQi89bHPNWEYO34tQ")
+    @attractions = @client.spots_by_query("Vacation attractions by #{convert_airportcode_to_destination(@flight_data[:destination])}")
+    binding.pry
   end
 
   def create
-  
+
     @trip = Trip.new(trip_params)
     origin = trip_params[:origin]
     departure_date = trip_params[:departure_date]
