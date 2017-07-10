@@ -8,7 +8,7 @@ class TripController < ApplicationController
   end
 
   def create
-  
+
     @trip = Trip.new(trip_params)
     origin = trip_params[:origin]
     departure_date = trip_params[:departure_date]

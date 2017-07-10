@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?, :api_call, :parse_api_response
+  helper_method :current_user, :logged_in?, :api_call, :parse_api_response, :flights_date
 
   def current_user
     @user ||= User.find_by(id: session[:user_id])
@@ -96,6 +96,10 @@ class ApplicationController < ActionController::Base
       trips << flight_details
     end
     trips
+  end
+
+  def flights_date(flight_time)
+    DateTime.parse(flight_time).strftime("%a %b %w at  %H:%M %p")
   end
 
 
