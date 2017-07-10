@@ -1,9 +1,9 @@
 
 
-
-<%= bootstrap_form_for(@user) do |f| %>
+<div class="text-center">
+<%= bootstrap_form_for(@user, layout: :inline) do |f| %>
   <%= f.email_field :email %>
   <%= f.password_field :password %>
-  <%= f.submit "Log In" %>
+  <%= f.submit "Log In", class: "btn btn-success"%>
 <% end %>
-
+</div>
