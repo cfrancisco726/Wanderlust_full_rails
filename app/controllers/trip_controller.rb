@@ -19,6 +19,7 @@ class TripController < ApplicationController
 
     binding.pry
 
+    render "trip_details"
   end
 
   private
