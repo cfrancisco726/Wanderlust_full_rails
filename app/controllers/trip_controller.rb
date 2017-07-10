@@ -8,7 +8,7 @@ class TripController < ApplicationController
   end
 
   def create
-    binding.pry
+  
     @trip = Trip.new(trip_params)
     origin = trip_params[:origin]
     departure_date = trip_params[:departure_date]
@@ -36,7 +36,7 @@ class TripController < ApplicationController
       flight_data.save
     end
 
-    
+
     render "trip_details"
   end
 
