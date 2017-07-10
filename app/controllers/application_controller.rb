@@ -40,17 +40,19 @@ class ApplicationController < ActionController::Base
     trips = []
 
     response["trips"]["tripOption"].each do |trip|
-      h = {}
-      h["saleTotal"]= trip["saleTotal"]
-      h["carrier"] = trip["slice"][0]["segment"][0]["flight"]["carrier"]
-      h["arrival_time_when_leaving_home"] = trip["slice"][0]["segment"][0]["leg"][0]["arrivalTime"]
-      h["departure_time_when_leaving_home"] = trip["slice"][0]["segment"][0]["leg"][0]["departureTime"]
-      h["arrival_time_when_coming_home"] = trip["slice"][1]["segment"][0]["leg"][0]["arrivalTime"]
-      h["departure_time_when_coming_home"] = trip["slice"][1]["segment"][0]["leg"][0]["departureTime"]
-      h["origin"] = trip["slice"][0]["segment"][0]["leg"][0]["origin"]
-      h["destination"] = trip["slice"][0]["segment"][0]["leg"][0]["destination"]
-      trips << h
+      flight_details = {}
+      flight_details["saleTotal"]= trip["saleTotal"]
+      flight_details["carrier"] = trip["slice"][0]["segment"][0]["flight"]["carrier"]
+      flight_details["departure_time_when_leaving_home"] = trip["slice"][0]["segment"][0]["leg"][0]["departureTime"]
+      flight_details["arrival_time_when_leaving_home"] = trip["slice"][0]["segment"][0]["leg"][0]["arrivalTime"]
+      flight_details["departure_time_when_coming_home"] = trip["slice"][1]["segment"][0]["leg"][0]["departureTime"]
+      flight_details["arrival_time_when_coming_home"] = trip["slice"][1]["segment"][0]["leg"][0]["arrivalTime"]
+      flight_details["origin"] = trip["slice"][0]["segment"][0]["leg"][0]["origin"]
+      flight_details["destination"] = trip["slice"][0]["segment"][0]["leg"][0]["destination"]
+      trips << flight_details
     end
     trips
   end
+
+
 end
