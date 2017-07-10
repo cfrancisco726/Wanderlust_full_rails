@@ -5,3 +5,50 @@ body {
   background-image: image-url('background.jpg');
   background-size: 100% 100%
 }
+
+body {
+  padding-top: 50px;
+  background-image: url("background.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow: none;
+}
+
+.em-text{
+  color: blue !important;
+}
+
+.jumbotron{
+  background: transparent;
+
+}
+
+.center{
+  display: center;
+}
+
+.navbar-brand
+{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  margin:0 auto;
+}
+
+#parent{
+  display: table;
+  width: 100%;
+}
+
+#form_login {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.color{
+  color: white;
+}
