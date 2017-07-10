@@ -8,6 +8,8 @@ end
 gem 'better_errors'
 gem 'google_places'
 gem 'coffee-rails'
+gem 'jquery-rails'
+gem 'binding_of_caller'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rest-client', '~> 1.8'
