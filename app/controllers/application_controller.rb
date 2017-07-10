@@ -25,7 +25,8 @@ class ApplicationController < ActionController::Base
               "date": arrival_date
             }
           ],
-          "maxPrice": "USD#{budget}"
+          "maxPrice": "USD#{budget}",
+          "solutions": "10"
         }
       }
   end
@@ -45,33 +46,37 @@ class ApplicationController < ActionController::Base
               "date": arrival_date
             }
           ],
-          "maxPrice": "USD#{budget}"
+          "maxPrice": "USD#{budget}",
+          "solutions": "10"
         }
       }
   end
 
-  def req_body_bur(origin, departure_date, arrival_date, passengers, budget)
+  def req_body_mia(origin, departure_date, arrival_date, passengers, budget)
     {"request": {
           "passengers": { "adultCount": passengers.to_i },
           "slice": [{
               "origin": origin,
-              "destination": ['BUR'],
+              "destination": ['MIA'],
               "date": departure_date,
               "maxStops": 0,
             },
             {
-              "origin": ['BUR'],
+              "origin": ['MIA'],
               "destination": origin,
               "date": arrival_date
             }
           ],
-          "maxPrice": "USD#{budget}"
+          "maxPrice": "USD#{budget}",
+          "solutions": "10"
         }
       }
   end
 
+
+
   def api_call(body)
-    RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyAaLHEBBLCI4aHLNu2jHiiAQGDbCunBQX0',
+    RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyDQlVvdzPVGCZ7UZdovGEeyREAXvKdteV0',
     body.to_json, :content_type => :json
   end
 
