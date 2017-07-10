@@ -1,0 +1,23 @@
+<br>
+<br>
+
+LOS ANGELES FLIGHTS <br>
+<% @cheapest_flights[0..9].each_with_index do |flight, index| %>
+  <a href="trip/<%=index+1%>">click   <a><br>
+<% end %>
+
+<br>
+<br>
+
+LOS ANGELES FLIGHTS <br>
+<% @cheapest_flights[10..19].each do |flight, index| %>
+  <%= flight["origin"] %><br>
+<% end %>
+
+<br>
+<br>
+
+LOS ANGELES FLIGHTS <br>
+<% @cheapest_flights[20..29].each do |flight, index| %>
+  <%= flight["origin"] %><br>
+<% end %>
