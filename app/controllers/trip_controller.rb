@@ -5,14 +5,10 @@ class TripController < ApplicationController
 
   def show
     @flight_data = ResponseFlightData.find(params[:id])
-    @client = GooglePlaces::Client.new("AIzaSyAaWoHUrKrTUmI4tlDQi89bHPNWEYO34tQ")
+    @client = GooglePlaces::Client.new("AIzaSyDbE5SezAQw9N64OZH9UyiEXWhK7x_GIMA")
     @attractions = @client.spots_by_query("Vacation attractions by #{convert_airportcode_to_destination(@flight_data[:destination])}")
 
-    @attractions.each do |atraction|
-      atraction.photos.each do |photo|
-        @photo ="https://maps.googleapis.com/maps/api/place/photo?maxwidth=#{photo.width}&photoreference=#{photo.photo_reference}&key=AIzaSyAaWoHUrKrTUmI4tlDQi89bHPNWEYO34tQ"
-      end
-    end
+
     @attraction_photo = @attractions
   end
 
