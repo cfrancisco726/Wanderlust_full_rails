@@ -22,6 +22,11 @@ class TripController < ApplicationController
     passengers = trip_params[:passengers]
     budget = trip_params[:budget]
 
+    # @hash = Gmaps4rails.build_markers(@users) do |user, marker|
+    # marker.lat user.latitude
+    # marker.lng user.longitude
+    # end
+
     parsed_data_den = JSON.parse(api_call(req_body_den(origin, departure_date, arrival_date, passengers, budget)).body)
     @array_flights_den = parse_api_response(parsed_data_den)
 
