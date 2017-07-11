@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?, :api_call, :parse_api_response, :convert_airportcode_to_destination, :flights_date
+  helper_method :lat_long, :current_user, :logged_in?, :api_call, :parse_api_response, :convert_airportcode_to_destination, :flights_date
 
 
   def current_user
@@ -111,8 +111,43 @@ class ApplicationController < ActionController::Base
       "Los Angeles"
     elsif airport_code == "MIA"
       "Miami"
+    elsif airport_code == "FCO"
+      "Italy"
+    elsif airport_code == "SYD"
+      "Sydney"
+    elsif airport_code == "LHR"
+      "London"
+    elsif airport_code == "CDG"
+      "Paris"
+    elsif airport_code == "PRG"
+      "Prague"
+    elsif airport_code == "DXB"
+      "Dubai"  
+    elsif airport_code == "JTR"
+      "Santorini"
+    elsif airport_code == "HNL"
+      "Honolulu"
+    elsif airport_code == "DPS"
+      "Bali"    
+    elsif airport_code == "YVR"
+      "Vancouver"
+    elsif airport_code == "HKT"
+      "Phuket"
+    elsif airport_code == "EAS"
+      "San Sebastian"
+    elsif airport_code == "PPT"
+      "Tahiti"
+    elsif airport_code == "FAT"
+      "Yosemite"
+    elsif airport_code == "SJO"
+      "Costa Rica"
+    elsif airport_code == "SLC"
+      "Salt Lake City"
+    elsif airport_code == "JAC"
+      "Jackson Hole"                
     end
   end
 
+  
 
-end
+
