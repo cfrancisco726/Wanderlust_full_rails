@@ -41,6 +41,10 @@ class TripController < ApplicationController
     # marker.lng user.longitude
     # end
 
+
+
+
+
     parsed_data_den = JSON.parse(api_call(req_body_den(origin, departure_date, arrival_date, passengers, budget)).body)
     @array_flights_den = parse_api_response(parsed_data_den)
 
@@ -63,8 +67,7 @@ class TripController < ApplicationController
       flight_data = ResponseFlightData.new({saleTotal: flight["saleTotal"], carrier: flight["carrier"], arrival_time_when_leaving_home: flight["arrival_time_when_leaving_home"], departure_time_when_leaving_home: flight["departure_time_when_leaving_home"], arrival_time_when_coming_home: flight["arrival_time_when_coming_home"], departure_time_when_coming_home: flight["departure_time_when_coming_home"], origin: flight["origin"], destination: flight["destination"]})
       flight_data.save
     end
-    # binding.pry
-    # binding.pry
+
     render "trip_details"
   end
 
