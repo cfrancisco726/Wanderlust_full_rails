@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?, :api_call, :parse_api_response, :convert_airportcode_to_destination, :flights_date
+  helper_method :current_user, :logged_in?, :api_call, :parse_api_response, :convert_airportcode_to_destination, :flights_date, :airport_api_call, :get_lat_and_lng
 
 
   def current_user
@@ -113,6 +113,29 @@ class ApplicationController < ActionController::Base
       "Miami"
     end
   end
+
+
+  # def airport_api_call(trip_params)
+  #   origin = trip_params[:origin]
+  #   departure_date = trip_params[:departure_date]
+  #   arrival_date = trip_params[:arrival_date]
+  #   passengers = trip_params[:passengers]
+  #   price = trip_params[:budget]
+
+  #   api = "mdwskINzrOFZfrIfrADop8dJZmRSJ4RF"
+  #   raw_json= RestClient.get "https://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?origin=#{origin}&departure_date=#{departure_date}&return_date=#{arrival_date}&max_rate=#{price}&apikey=#{api}"
+  #   json_parse = JSON.parse(raw_json)
+  # end
+
+  # def get_lat_and_lng(json)
+  #  json["results"].map do |result|
+  #     raw_json = RestClient.get "https://maps.googleapis.com/maps/api/place/textsearch/json?query=airport+in+#{result["destination"]}&key=AIzaSyDQlVvdzPVGCZ7UZdovGEeyREAXvKdteV0"
+  #     json_parse = JSON.parse(raw_json)
+  #   end
+  # end
+
+
+
 
 
 end
