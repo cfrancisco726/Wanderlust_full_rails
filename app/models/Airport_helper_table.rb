@@ -1,3 +1,2 @@
-class Airport_helper_table < ApplicationRecord
-    
+class AirportHelperTable < ApplicationRecord
 end

@@ -1,10 +1,11 @@
-class AirportHelperTable < ActiveRecord::Migration[5.1]
+class CreateAirportHelperTables < ActiveRecord::Migration[5.1]
   def change
-    create_table :AirportHelperTable do |t|
+    create_table :airport_helper_tables do |t|
       t.string :location
       t.string :airport_code
       t.decimal :longitude
       t.decimal :latitude
+      t.timestamps
     end
   end
 end
