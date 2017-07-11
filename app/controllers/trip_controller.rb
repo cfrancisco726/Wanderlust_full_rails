@@ -22,7 +22,6 @@ class TripController < ApplicationController
   end
 
   def index
-    # binding.pry
     @cheapest_flights = ResponseFlightData.all.each_slice(10).to_a
     render "trip_details"
   end
