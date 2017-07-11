@@ -5,9 +5,10 @@ Rails.application.routes.draw do
 
   resources :sessions
 
-  resources :trip, only: [:create, :show, :index]
+  resources :trip, only: [:show, :create, :index]
 
-  # get '/users/logout' to: 'users#logout'
+
+   # get '/users/logout' to: 'users#logout'
   # post '/users/login' to: 'users#create_session'
   get '/trip/:trip_id/locations/:location', to: 'trip#google_place'
   get '/login', to: 'users#login'

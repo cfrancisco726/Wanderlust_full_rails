@@ -21,6 +21,11 @@ class TripController < ApplicationController
     render "google_place"
   end
 
+  def index
+    # binding.pry
+    @cheapest_flights = ResponseFlightData.all.each_slice(10).to_a
+    render "trip_details"
+  end
 
   def create
 
@@ -59,7 +64,7 @@ class TripController < ApplicationController
       flight_data.save
     end
     # binding.pry
-    binding.pry
+    # binding.pry
     render "trip_details"
   end
 
