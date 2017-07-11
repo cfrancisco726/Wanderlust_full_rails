@@ -10,14 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711193244) do
+ActiveRecord::Schema.define(version: 20170711213152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "AirportHelperTable", force: :cascade do |t|
+  create_table "airport_helper_tables", force: :cascade do |t|
+    t.string "location"
+    t.string "airport_code"
     t.decimal "longitude"
     t.decimal "latitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "flights", force: :cascade do |t|
