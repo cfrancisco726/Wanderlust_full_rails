@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 20170711193244) do
   enable_extension "plpgsql"
 
   create_table "AirportHelperTable", force: :cascade do |t|
+    t.string "location"
+    t.string "airport_code"
     t.decimal "longitude"
     t.decimal "latitude"
   end
