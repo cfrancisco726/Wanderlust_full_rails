@@ -1,0 +1,21 @@
+
+<div class="container">
+    <div class="row">
+            <% @attractions.each do |attraction| %>
+              <div class="col-md-4" style="min-height: 300px;">
+                <div class="media">
+                  <%attraction.photos.each do |photo| %>
+                    <div class="media-left">
+                      <img class="media-object" src=<%=photo ="https://maps.googleapis.com/maps/api/place/photo?maxwidth=#{photo.width}&photoreference=#{photo.photo_reference}&key=AIzaSyDbE5SezAQw9N64OZH9UyiEXWhK7x_GIMA"%> alt="..." width="150px" height"1580px">
+                    </div>
+                  <%end%>
+
+                  <div class="media-body">
+                    <h4 class="media-heading"><%= attraction.name %></h4>
+                    <%= attraction.formatted_address %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+    </div>
+</div>
