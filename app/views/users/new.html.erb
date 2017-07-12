@@ -2,11 +2,17 @@
 
 
 
-<div class="text-center">
+<div class="text-center ">
 <%= bootstrap_form_for(@user, layout: :inline) do |f| %>
-  <%= f.text_field :name %>
-  <%= f.email_field :email %>
-  <%= f.password_field :password %>
+<div class="field color">
+  <p class="color "><%= f.text_field :name %></p><br>
+</div>
+<div class="field color">
+  <p class="color "><%= f.email_field :email %></p><br>
+</div>
+<div class="field color">  
+  <p class="color "><%= f.password_field :password %></p><br>
+</div>  
   <%= f.submit "Log In", class: "btn btn-success"%>
 <% end %>
 </div>

@@ -1,27 +1,24 @@
-<h5 align="center" class="color"> New Trip</h5>
 
-
-
-<%= form_for @trip, url: {action: "create"}, html: {class: "experiment_form"} do |f| %>
-  <div class="form-group col-xs-6 center">
-  <p class="color"><%= f.label :budget, "Budget", class: "col-md-4 control-label" %></p>
-  <p><%= f.text_field :budget %></p>
+<div id="form">
+<%= bootstrap_form_for(@trip, url: {action: "create"}, html: {class: "experiment_form"}) do |f| %>
+  <div class="form-group col-xs-6 center color">
+  <p><%= f.text_field :budget, :class=>'betaTextField'%></p>
   </div>
-  <div class="form-group col-xs-6 center">
-  <p class="color"><%= f.label :origin, "Origin", class: "col-md-4 control-label" %></p>
+  <div class="form-group col-xs-6 center color">
   <p><%= f.text_field :origin%></p>
   </div>
-  <div class="form-group col-xs-6 center">
-  <p class="color"><%= f.label :passengers, "Number of Passengers:", class: "col-md-4 control-label" %></p>
+  <div class="form-group col-xs-6 center color">
   <p><%= f.text_field :passengers%></p>
   </div>
-  <div class="form-group col-xs-6 center">
-  <p class="color"><%= f.label :departure_date, "Departure Date", class: "col-md-4 control-label" %></p>
+  <div class="form-group col-xs-3 center color">
+ 
   <p><%= f.date_field :departure_date %></p>
   </div>
-  <div class="form-group col-xs-6 center">
-  <p class="color"><%= f.label :arrival_date, "Return Date", class: "col-md-4 control-label" %></p>
+  <div class="form-group col-xs-3 center color">
+
   <p><%= f.date_field :arrival_date %></p>
   </div>
-  <p><%= f.submit "Submit", class: "col-md-4 control-label"%></p>
+  <br>
+  <p align="center"><%= f.submit "Go!", class: "btn btn-success submit"%></p>
 <% end %>
+</div>

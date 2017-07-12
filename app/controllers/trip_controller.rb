@@ -5,15 +5,20 @@ class TripController < ApplicationController
 
   def show
     @flight_data = ResponseFlightData.find(params[:id])
-    @client = GooglePlaces::Client.new("AIzaSyDbE5SezAQw9N64OZH9UyiEXWhK7x_GIMA")
+
+    @client = GooglePlaces::Client.new("AIzaSyC6QVsR2_7tYbCiMCIWqEwg_6_EV6XHBIE")
+
     @attractions = @client.spots_by_query("Vacation attractions by #{convert_airportcode_to_destination(@flight_data[:destination])}")
 
     @attraction_photo = @attractions
   end
 
+
   def google_place
     @flight_data = ResponseFlightData.find(params[:trip_id])
-    @client = GooglePlaces::Client.new("AIzaSyDbE5SezAQw9N64OZH9UyiEXWhK7x_GIMA")
+
+    @client = GooglePlaces::Client.new("AIzaSyC6QVsR2_7tYbCiMCIWqEwg_6_EV6XHBIE")
+
     @attractions = @client.spots_by_query("#{params[:location]} by #{convert_airportcode_to_destination(@flight_data[:destination])}")
 
     @attraction_photo = @attractions
@@ -42,18 +47,27 @@ class TripController < ApplicationController
     # marker.lat user.latitude
     # marker.lng user.longitude
     # end
-    all_airports = AirportHelperTable.all
 
-    parsed_data_den = JSON.parse(api_call(req_body_den(origin, departure_date, arrival_date, passengers, budget)).body)
-    @array_flights_den = parse_api_response(parsed_data_den)
-    parsed_data_lax = JSON.parse(api_call(req_body_lax(origin, departure_date, arrival_date, passengers, budget)).body)
-    @array_flights_lax = parse_api_response(parsed_data_lax)
 
-    parsed_data_mia = JSON.parse(api_call(req_body_mia(origin, departure_date, arrival_date, passengers, budget)).body)
-    @array_flights_mia = parse_api_response(parsed_data_mia)
-    #
+    # parsed_data_den = JSON.parse(api_call(req_body_den(origin, departure_date, arrival_date, passengers, budget)).body)
+    # @array_flights_den = parse_api_response(parsed_data_den)
+    # parsed_data_lax = JSON.parse(api_call(req_body_lax(origin, departure_date, arrival_date, passengers, budget)).body)
+    # @array_flights_lax = parse_api_response(parsed_data_lax)
+
     @cheapest_flights = []
-    @cheapest_flights << @array_flights_den << @array_flights_lax << @array_flights_mia
+    hotels =  [1,2,3,4]
+
+    ['DEN', 'LAX', 'MIA', 'FCO'].each do |airport_code|
+      parsed_data_den = JSON.parse(api_call(req_body(origin, departure_date, arrival_date, passengers, budget, airport_code)).body)
+      @array_flight= parse_api_response(parsed_data_den)
+
+      
+      city = []
+      @array_hotel = [3,4,5,6,7]
+      city << @array_flight
+      city << @array_hotel
+      @cheapest_flights << city
+    end
 
       # @cheapest_flights = @array_flights_den + @array_flights_lax + @array_flights_mia
 
@@ -62,14 +76,24 @@ class TripController < ApplicationController
 
     @airports = []
 
-    @cheapest_flights.flatten.each do |flight|
+    @cheapest_flights.each do |city|
+      flights = city[0]
+      flights.each do |flight|
+        flight_data = ResponseFlightData.new({saleTotal: flight["saleTotal"], carrier: flight["carrier"], arrival_time_when_leaving_home: flight["arrival_time_when_leaving_home"], departure_time_when_leaving_home: flight["departure_time_when_leaving_home"], arrival_time_when_coming_home: flight["arrival_time_when_coming_home"], departure_time_when_coming_home: flight["departure_time_when_coming_home"], origin: flight["origin"], destination: flight["destination"]})
+        flight_data.save
+        @airports << AirportHelperTable.find_by(airport_code: flight_data.destination)
+      end
 
-      flight_data = ResponseFlightData.new({saleTotal: flight["saleTotal"], carrier: flight["carrier"], arrival_time_when_leaving_home: flight["arrival_time_when_leaving_home"], departure_time_when_leaving_home: flight["departure_time_when_leaving_home"], arrival_time_when_coming_home: flight["arrival_time_when_coming_home"], departure_time_when_coming_home: flight["departure_time_when_coming_home"], origin: flight["origin"], destination: flight["destination"]})
-      flight_data.save
-      @airports << AirportHelperTable.find_by(airport_code: flight_data.destination)
-
+      hotels = city[1]
+      hotels.each do |hotel|
+        p hotel
+      end
     end
+
+      binding.pry
+
     @hash = Gmaps4rails.build_markers(@airports) do |airport, marker|
+
 
       marker.lat(airport.latitude)
       marker.lng(airport.longitude)
@@ -77,6 +101,10 @@ class TripController < ApplicationController
 
     end
 
+
+
+
+    end
 
 
     render "trip_details"
