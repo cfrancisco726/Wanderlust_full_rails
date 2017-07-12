@@ -23,11 +23,7 @@ class TripController < ApplicationController
   end
 
   def index
-    @cheapest_flights = ResponseFlightData.all.each_slice(10).to_a
-    @airports = []
-    @cheapest_flights.map! do |city|
-      [city, ['hotel1', 'hotel2']]
-    end
+    @cheapest_flights = ResponseFlightData.all
     # binding.pry
     render "trip_details"
   end
@@ -46,25 +42,13 @@ class TripController < ApplicationController
 
 
     @cheapest_flights = []
-    hotels =  [1,2,3,4]
 
-    ['DEN', 'LAX'].each do |airport_code|
+
+    ['DEN','LAX', 'MIA', 'FCO', 'LHR'].each do |airport_code|
       parsed_data_den = JSON.parse(api_call(req_body(origin, departure_date, arrival_date, passengers, budget, airport_code)).body)
       @array_flight= parse_api_response(parsed_data_den)
-
-      # first array is flights, second hotels,
-      # make table with hotel response keys
-      # make table responseHotels like ResponseFlightData
-      # fix migration for hotel
-      # cheapest_flights is an array of arrays
-      # [[[],[]],[]]
-
-
-      city = []
-      @array_hotel = [3,4,5,6,7]
-      city << @array_flight
-      city << @array_hotel
-      @cheapest_flights << city
+      @flight = @array_flight[0]
+      @cheapest_flights << @flight
     end
 
 
@@ -73,18 +57,10 @@ class TripController < ApplicationController
 
     @airports = []
 
-    @cheapest_flights.each do |city|
-      flights = city[0]
-      flights.each do |flight|
+    @cheapest_flights.each do |flight|
         flight_data = ResponseFlightData.new({saleTotal: flight["saleTotal"], carrier: flight["carrier"], arrival_time_when_leaving_home: flight["arrival_time_when_leaving_home"], departure_time_when_leaving_home: flight["departure_time_when_leaving_home"], arrival_time_when_coming_home: flight["arrival_time_when_coming_home"], departure_time_when_coming_home: flight["departure_time_when_coming_home"], origin: flight["origin"], destination: flight["destination"]})
         flight_data.save
         @airports << AirportHelperTable.find_by(airport_code: flight_data.destination)
-      end
-
-      hotels = city[1]
-      hotels.each do |hotel|
-        p hotel
-      end
     end
 
 
@@ -93,9 +69,10 @@ class TripController < ApplicationController
 
       marker.lat(airport.latitude)
       marker.lng(airport.longitude)
-      @cheapest_flights.each do |flights|
-        flights = flights[0]
-        marker.infowindow render_to_string(:partial => "/trip/flight_details", :locals => { :flights => flights})
+
+
+      @cheapest_flights.each_with_index do |flight, index|
+        marker.infowindow render_to_string(:partial => "/trip/flight_details", locals: { flight: flight, index: index})
       end
       marker.picture({
                   :url => airport.image_url,
@@ -104,7 +81,6 @@ class TripController < ApplicationController
                  })
 
     end
-
 
 
     render "trip_details"
