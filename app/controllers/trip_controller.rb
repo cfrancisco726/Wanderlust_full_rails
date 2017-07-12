@@ -13,7 +13,7 @@ class TripController < ApplicationController
     @attraction_photo = @attractions
   end
 
-binding.pry
+
   def google_place
     @flight_data = ResponseFlightData.find(params[:trip_id])
 
