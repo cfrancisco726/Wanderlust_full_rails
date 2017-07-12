@@ -148,6 +148,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def api_call_hotel(check_in, max_rate)
+    base_url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=latitude=43.6&longitude=7.2&radius=50&check_in=#{check_in}&check_out=#{'2017-09-03'}&chain=RT&cy=USD&number_of_results=20&max_rate=#{max_rate}&apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe"
+    data = open(base_url).read
+    response = JSON.parse(data, headers: true, header_converters: :symbol)
+  end
+
   
 
 

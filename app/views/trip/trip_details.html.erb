@@ -55,13 +55,13 @@
 
           <h5 class="mb-1">Flights to <%=convert_airportcode_to_destination(city[0]["destination"])%></h5>
            <% city.each_with_index do |flight, index| %>
-          <p class="mb-1">Ticket price: <%= flight["saleTotal"] %></p>
-          <p class="mb-1"><%= flights_date(flight["departure_time_when_leaving_home"])%> ----- <%= flights_date(flight["arrival_time_when_leaving_home"]) %></p>
-          <p class="mb-1"><%= flight["origin"] %> ----------------------------- <%= flight["destination"] %></p>
-          <p class="mb-1"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"]) %></p>
-          <p class="mb-1"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
-          <p class="mb-1"><a href="/users/<%=city_index*10 + index+1%>/savetrip" class="list-group-item list-group-item-action">Save flight to wishlist<a></p>
-        <% end %>
+              <p class="mb-1">Ticket price: <%= flight["saleTotal"] %></p>
+              <p class="mb-1"><%= flights_date(flight["departure_time_when_leaving_home"])%> ----- <%= flights_date(flight["arrival_time_when_leaving_home"]) %></p>
+              <p class="mb-1"><%= flight["origin"] %> ----------------------------- <%= flight["destination"] %></p>
+              <p class="mb-1"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"]) %></p>
+              <p class="mb-1"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
+              <p class="mb-1"><a href="/users/<%=city_index*10 + index+1%>/savetrip" class="list-group-item list-group-item-action">Save flight to wishlist<a></p>
+            <% end %>
 
 
         <a href="/trip/<%=1+city_index*10%>">Attractions in <%=convert_airportcode_to_destination(city[0]["destination"]) %></a><br>
@@ -77,4 +77,3 @@
 
 
 <% end %>
-
