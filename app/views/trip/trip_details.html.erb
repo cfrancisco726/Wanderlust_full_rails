@@ -6,36 +6,34 @@
   <div id="map" style='width: 800px; height: 400px;'></div>
 </div>
 <script>
-  var map;
-  function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 2,
-      center: new google.maps.LatLng(2.8,-187.3),
-      mapTypeId: 'terrain'
-    });
+window.onload = function () {
+    var markers = <%=raw @hash.to_json %>;
+    var mapOptions = {
+        center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+        zoom: 3,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var infoWindow = new google.maps.InfoWindow();
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    for (i = 0; i < markers.length; i++) {
+        var data = markers[i]
+        var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+        marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: data.title
+        });
+        (function (marker, data) {
+            google.maps.event.addListener(marker, "click", function (e) {
+                infoWindow.setContent(data.description);
+                infoWindow.open(map, marker);
 
-    // Create a <script> tag and set the USGS URL as the source.
-    var script = document.createElement('script');
-    // This example uses a local copy of the GeoJSON stored at
-    // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-    script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-    document.getElementsByTagName('head')[0].appendChild(script);
-    debugger
-  }
-
-  // Loop through the results array and place a marker for each
-  // set of coordinates.
-  window.eqfeed_callback = function(results) {
-    for (var i = 0; i < results.features.length; i++) {
-      var coords = results.features[i].geometry.coordinates;
-      var latLng = new google.maps.LatLng(coords[1],coords[0]);
-      var marker = new google.maps.Marker({
-        position: latLng,
-        map: map
-      });
+            });
+        })(marker, data);
     }
-  }
+}
 </script>
+<%= @airports.to_json %>
 <style>
 #map {
         height: 100%;

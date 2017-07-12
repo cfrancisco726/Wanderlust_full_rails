@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
 
 
   def api_call(body)
-    RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyDQlVvdzPVGCZ7UZdovGEeyREAXvKdteV0',
+    RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCEodSzpD3t7d7_Bvk076631LTmITGVKfs',
     body.to_json, :content_type => :json
   end
 
@@ -122,13 +122,13 @@ class ApplicationController < ActionController::Base
     elsif airport_code == "PRG"
       "Prague"
     elsif airport_code == "DXB"
-      "Dubai"  
+      "Dubai"
     elsif airport_code == "JTR"
       "Santorini"
     elsif airport_code == "HNL"
       "Honolulu"
     elsif airport_code == "DPS"
-      "Bali"    
+      "Bali"
     elsif airport_code == "YVR"
       "Vancouver"
     elsif airport_code == "HKT"
@@ -144,10 +144,12 @@ class ApplicationController < ActionController::Base
     elsif airport_code == "SLC"
       "Salt Lake City"
     elsif airport_code == "JAC"
-      "Jackson Hole"                
+      "Jackson Hole"
     end
   end
 
-  
+end
+
+
 
 
