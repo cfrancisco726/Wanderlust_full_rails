@@ -1,5 +1,10 @@
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+
+
+
+<div class="container">
+
+  <div id="map_container"></div>
+  <div id="map"></div>
 </div>
 <script>
 window.onload = function () {
@@ -17,27 +22,50 @@ window.onload = function () {
         marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
-            title: data.title
+            title: data.location
         });
+
+
         (function (marker, data) {
             google.maps.event.addListener(marker, "click", function (e) {
-                infoWindow.setContent(data.description);
+              var imgUrl = "/assets/" + data.picture.url
+                infoWindow.setContent(`<div><div> <img src=${imgUrl} alt="Smiley face" height="100" width="200"> </div> ${data.infowindow}</div>` );
                 infoWindow.open(map, marker);
 
             });
         })(marker, data);
+
     }
 }
 </script>
 <style>
-#map {
-        height: 100%;
-        align-items: center;
-      }
+
+
+.container{
+  width: 100%;
+  margin: 0 auto;
+  margin-top:50px;
+}
+
+#map_container{
+  position: relative;
+}
+#map{
+    height: 500px;
+    overflow: hidden;
+    padding-bottom: 22.25%;
+    padding-top: 30px;
+    position: relative;
+}
 
 </style>
 
+
+
+
+
 <!-- <div style="text-align:center;"><br><br><br>
+
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">See all flights</button><br><br><br><br>
 </div>
 <div id="demo" class="collapse"> -->
@@ -47,22 +75,27 @@ window.onload = function () {
 
 
     <div class="list-group">
+
+
         <div class="d-flex w-100 justify-content-between" style="color: #fff;">
           <h4 class="mb-1">List of flights</h4>
           <%flights = city[0]%>
 
           <h5 class="mb-1">Flights to <%=convert_airportcode_to_destination(flights[0]["destination"])%></h5>
-           <% flights.each_with_index do |flight, index| %>
+            <% flights.each_with_index do |flight, index| %>
               <p class="mb-1">Ticket price: <%= flight["saleTotal"] %></p>
               <p class="mb-1"><%= flights_date(flight["departure_time_when_leaving_home"])%> ----- <%= flights_date(flight["arrival_time_when_leaving_home"]) %></p>
               <p class="mb-1"><%= flight["origin"] %> ----------------------------- <%= flight["destination"] %></p>
               <p class="mb-1"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"]) %></p>
               <p class="mb-1"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
+              <% if logged_in? %>
               <p class="btn btn-success submit"><a href="/users/<%= city_index*10 + index+1%>/savetrip" class="list-group-item list-group-item-action">Save flight to wishlist<a></p>
+              <% end %>
             <% end %>
 
             <br>
 
+            hotels = city[1]
 
 
         <a href="/trip/<%=1+city_index*10%>">Attractions in <%=convert_airportcode_to_destination(city[0][0]["destination"]) %></a><br>
@@ -72,11 +105,15 @@ window.onload = function () {
         <a href="/trip/<%=1+city_index*10%>/locations/beaches">Beaches in <%=convert_airportcode_to_destination(city[0][0]["destination"])%></a><br>
         <a href="/trip/<%=1+city_index*10%>/locations/bars">Bars in <%=convert_airportcode_to_destination(city[0][0]["destination"])%></a><br>
 
+
       </div>
-    </div><br><br><br><br><br>
-
-
-
 
 
 <% end %></div>
+
+
+
+
+
+
+
