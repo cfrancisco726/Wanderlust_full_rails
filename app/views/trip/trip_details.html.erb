@@ -97,8 +97,9 @@ window.onload = function () {
 
             hotels = city[1]
 
-        <a href="/trip/<%=1+city_index*10%>">Attractions in <%=convert_airportcode_to_destination(city[0][0]["destination"]) %></a><br>
 
+        <a href="/trip/<%=1+city_index*10%>">Attractions in <%=convert_airportcode_to_destination(city[0][0]["destination"]) %></a><br>
+        <a href="/trip/<%=1+city_index*10%>/locations/hotels">Hotels <%=convert_airportcode_to_destination(city[0][0]["destination"]) %></a><br>
         <a href="/trip/<%=1+city_index*10%>/locations/museum">Museums in <%=convert_airportcode_to_destination(city[0][0]["destination"])%></a><br>
         <a href="/trip/<%=1+city_index*10%>/locations/restaurants">Restaurants in <%=convert_airportcode_to_destination(city[0][0]["destination"])%></a><br>
         <a href="/trip/<%=1+city_index*10%>/locations/beaches">Beaches in <%=convert_airportcode_to_destination(city[0][0]["destination"])%></a><br>
