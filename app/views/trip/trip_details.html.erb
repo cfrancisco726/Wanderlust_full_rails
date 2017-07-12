@@ -1,7 +1,7 @@
 
 
 <div class="container">
-  <h1> Pick your flight! </h1>
+
   <div id="map_container"></div>
   <div id="map"></div>
 </div>
@@ -21,11 +21,14 @@ window.onload = function () {
         marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
-            title: data.title
+            title: data.location
         });
+
+
         (function (marker, data) {
             google.maps.event.addListener(marker, "click", function (e) {
-                infoWindow.setContent(data.description);
+              var imgUrl = "/assets/" + data.picture.url
+                infoWindow.setContent(`<div><div> <img src=${imgUrl} alt="Smiley face" height="100" width="200"> </div> ${data.infowindow}</div>` );
                 infoWindow.open(map, marker);
 
             });
@@ -35,18 +38,6 @@ window.onload = function () {
 }
 </script>
 <style>
-
-h1{
-  font-size: 45px;
-  width: 100%;
-  text-align: center;
-  font-weight: bold;
-  color:black;
-  margin-bottom: 40px;
-  color: #000;
-  text-shadow: 0 2px 3px #555555;
-  font-family: Tahoma;
-}
 
 
 .container{
@@ -83,11 +74,11 @@ h1{
 
     <div class="list-group">
 
-       
+
         <div class="d-flex w-100 justify-content-between" style="color: #fff;">
           <h4 class="mb-1">List of flights</h4>
           <%flights = city[0]%>
-        
+
           <h5 class="mb-1">Flights to <%=convert_airportcode_to_destination(flights[0]["destination"])%></h5>
            <% flights.each_with_index do |flight, index| %>
               <p class="mb-1">Ticket price: <%= flight["saleTotal"] %></p>
@@ -110,10 +101,10 @@ h1{
 
         <% end %>
       </div>
-    </div><br><br><br><br><br>
 
 
 
 
 
-<% end %></div>
+
+

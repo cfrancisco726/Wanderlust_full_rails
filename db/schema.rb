@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170711213152) do
     t.string "airport_code"
     t.decimal "longitude"
     t.decimal "latitude"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
