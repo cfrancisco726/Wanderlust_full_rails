@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 
 
 
@@ -91,5 +91,7 @@
 
 
     <%= yield %>
+     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyUx2GAyVEXIWJRnynj0sjz4Kq4xi4Uj0&callback=initMap">
+    </script>
   </body>
 </html>

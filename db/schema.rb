@@ -37,13 +37,16 @@ ActiveRecord::Schema.define(version: 20170711213152) do
   end
 
   create_table "hotels", force: :cascade do |t|
-    t.string "name"
-    t.integer "price"
-    t.boolean "booked?"
-    t.bigint "trip_id"
+    t.string "property_name"
+    t.string "location"
+    t.string "room_type_code"
+    t.string "total_price"
+    t.string "min_daily_rate"
+    t.string "contacts"
+    t.string "awards"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["trip_id"], name: "index_hotels_on_trip_id"
   end
 
   create_table "response_flight_data", force: :cascade do |t|

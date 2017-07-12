@@ -1,43 +1,79 @@
-<br>
-<br>
 
-<div class="list-group">
-    <div class="d-flex w-100 justify-content-between">
-        <h4 class="mb-1">List of flights</h4>
-      <h5 class="mb-1">Flights to Denver</h5>
-       <% @cheapest_flights[0..9].each_with_index do |flight, index| %>
-      <p class="mb-1">Ticket price: <%= flight["saleTotal"] %></p>
-      <p class="mb-1"><%= flights_date(flight["departure_time_when_leaving_home"])%> ----- <%= flights_date(flight["arrival_time_when_leaving_home"]) %></p>
-      <p class="mb-1"><%= flight["origin"] %> ----------------------------- <%= flight["destination"] %></p>
-      <p class="mb-1"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"]) %></p>
-      <p class="mb-1"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
-      <p class="mb-1"><a href="trip/<%=index+1%>" class="list-group-item list-group-item-action">Book hotel<a></p>
-    <% end %>
+<h4 class="mb-1">List of flights</h4>
 
-    <br>
-    <br>
 
-    <h4 class="mb-1">Flights to Los Angeles World Airports</h4>
-    <% @cheapest_flights[10..19].each_with_index do |flight, index| %>
-      <p class="mb-1">Ticket price: <%= flight["saleTotal"] %></p>
-      <p class="mb-1"><%= flights_date(flight["departure_time_when_leaving_home"])%> ----- <%= flights_date(flight["arrival_time_when_leaving_home"]) %></p>
-      <p class="mb-1"><%= flight["origin"] %> ----------------------------- <%= flight["destination"] %></p>
-      <p class="mb-1"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"] %></p>
-      <p class="mb-1"><%= flight["destination"]) %> -----------------------------<%= flight["origin"] %></p>
-      <p class="mb-1"><a href="trip/<%=index+11%>" class="list-group-item list-group-item-action">Book hotel<a></p>
-    <% end %>
-
-    <br>
-    <br>
-
-    Flights to Miami</div> </p>
-    <% @cheapest_flights[20..29].each_with_index do |flight, index| %>
-      <p class="mb-1">Ticket price: <%= flight["saleTotal"] %></p>
-      <p class="mb-1"><%= flights_date(flight["departure_time_when_leaving_home"])%> ----- <%= flights_date(flight["arrival_time_when_leaving_home"]) %></p>
-      <p class="mb-1"><%= flight["origin"] %> ----------------------------- <%= flight["destination"] %></p>
-      <p class="mb-1"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"] )%></p>
-      <p class="mb-1"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
-      <p class="mb-1"><a href="trip/<%=index+21%>" class="list-group-item list-group-item-action">Book hotel<a></p>
-    <% end %>
-    </div>
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
 </div>
+<script>
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 2,
+      center: new google.maps.LatLng(2.8,-187.3),
+      mapTypeId: 'terrain'
+    });
+
+    // Create a <script> tag and set the USGS URL as the source.
+    var script = document.createElement('script');
+    // This example uses a local copy of the GeoJSON stored at
+    // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+    script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+    document.getElementsByTagName('head')[0].appendChild(script);
+    debugger
+  }
+
+  // Loop through the results array and place a marker for each
+  // set of coordinates.
+  window.eqfeed_callback = function(results) {
+    for (var i = 0; i < results.features.length; i++) {
+      var coords = results.features[i].geometry.coordinates;
+      var latLng = new google.maps.LatLng(coords[1],coords[0]);
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: map
+      });
+    }
+  }
+</script>
+<style>
+#map {
+        height: 100%;
+      }
+</style>
+
+
+
+<h4 class="mb-1">List of flights</h4>
+
+
+<% @cheapest_flights.each_with_index do |city, city_index| %>
+
+
+    <div class="list-group">
+        <div class="d-flex w-100 justify-content-between">
+
+          <h5 class="mb-1">Flights to <%=convert_airportcode_to_destination(city[0]["destination"])%></h5>
+           <% city.each_with_index do |flight, index| %>
+              <p class="mb-1">Ticket price: <%= flight["saleTotal"] %></p>
+              <p class="mb-1"><%= flights_date(flight["departure_time_when_leaving_home"])%> ----- <%= flights_date(flight["arrival_time_when_leaving_home"]) %></p>
+              <p class="mb-1"><%= flight["origin"] %> ----------------------------- <%= flight["destination"] %></p>
+              <p class="mb-1"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"]) %></p>
+              <p class="mb-1"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
+              <p class="mb-1"><a href="/users/<%=city_index*10 + index+1%>/savetrip" class="list-group-item list-group-item-action">Save flight to wishlist<a></p>
+            <% end %>
+
+
+        <a href="/trip/<%=1+city_index*10%>">Attractions in <%=convert_airportcode_to_destination(city[0]["destination"]) %></a><br>
+
+        <a href="/trip/<%=1+city_index*10%>/locations/museum">Museums in <%=convert_airportcode_to_destination(city[0]["destination"])%></a><br>
+        <a href="/trip/<%=1+city_index*10%>/locations/restaurants">Restaurants in <%=convert_airportcode_to_destination(city[0]["destination"])%></a><br>
+        <a href="/trip/<%=1+city_index*10%>/locations/beaches">Beaches in <%=convert_airportcode_to_destination(city[0]["destination"])%></a><br>
+        <a href="/trip/<%=1+city_index*10%>/locations/bars">Bars in <%=convert_airportcode_to_destination(city[0]["destination"])%></a><br>
+
+      </div>
+    </div><br><br><br><br><br>
+
+
+
+<% end %>

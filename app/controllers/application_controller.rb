@@ -12,17 +12,17 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  def req_body_den(origin, departure_date, arrival_date, passengers, budget)
+  def req_body(origin, departure_date, arrival_date, passengers, budget, destination_airport_code)
     {"request": {
           "passengers": { "adultCount": passengers.to_i },
           "slice": [{
               "origin": origin,
-              "destination": ['DEN'],
+              "destination": destination_airport_code,
               "date": departure_date,
               "maxStops": 0,
             },
             {
-              "origin": ['DEN'],
+              "origin": destination_airport_code,
               "destination": origin,
               "date": arrival_date
             }
@@ -122,13 +122,13 @@ class ApplicationController < ActionController::Base
     elsif airport_code == "PRG"
       "Prague"
     elsif airport_code == "DXB"
-      "Dubai"  
+      "Dubai"
     elsif airport_code == "JTR"
       "Santorini"
     elsif airport_code == "HNL"
       "Honolulu"
     elsif airport_code == "DPS"
-      "Bali"    
+      "Bali"
     elsif airport_code == "YVR"
       "Vancouver"
     elsif airport_code == "HKT"
@@ -144,10 +144,14 @@ class ApplicationController < ActionController::Base
     elsif airport_code == "SLC"
       "Salt Lake City"
     elsif airport_code == "JAC"
-      "Jackson Hole"                
+      "Jackson Hole"
     end
   end
-
+  
+  def api_call_hotel(check_in, max_rate)
+    base_url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=latitude=43.6&longitude=7.2&radius=50&check_in=#{check_in}&check_out=#{'2017-09-03'}&chain=RT&cy=USD&number_of_results=20&max_rate=#{max_rate}&apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe"
+    data = open(base_url).read
+    response = JSON.parse(data, headers: true, header_converters: :symbol)
   end
 
-
+end
