@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :lat_long, :current_user, :logged_in?, :api_call, :parse_api_response, :convert_airportcode_to_destination, :flights_date
+  helper_method :lat_long, :current_user, :logged_in?, :api_call, :parse_api_response, :convert_airportcode_to_destination, :flights_date, :hotel_query, :hotel_query
 
 
   def current_user
@@ -148,13 +148,27 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
-end
-
-  
-  def api_call_hotel(check_in, max_rate)
-    base_url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=latitude=43.6&longitude=7.2&radius=50&check_in=#{check_in}&check_out=#{'2017-09-03'}&chain=RT&cy=USD&number_of_results=20&max_rate=#{max_rate}&apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe"
+  def hotel_query(latitude, longitude, check_in, check_out, max_rate)
+  	base_url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=#{latitude}&longitude=#{longitude}&radius=50&check_in=#{check_in}&check_out=#{check_out}&chain=RT&cy=USD&number_of_results=10&max_rate=#{max_rate}&apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe"
     data = open(base_url).read
-    response = JSON.parse(data, headers: true, header_converters: :symbol)
+    JSON.parse(data, headers: true, header_converters: :symbol)
   end
+
+  def hotels_parse_response
+
+      hotel_query.each do |key, value|
+      	value.map do |key1, value1|
+    			hotels << key1["property_name"]
+    			hotels << key1["location"]
+    			hotels << key1["room_type_code"]
+    			hotels << key1["total_price "]
+    			hotels << key1["min_daily_rate "]
+    			hotels << key1["contacts"]
+    			hotels << key1["awards"]
+    			hotels << key1["room_type_info"]
+    			hotels << key1["address"]
+		    end
+      end
+      binding.pry
+    end
 end
