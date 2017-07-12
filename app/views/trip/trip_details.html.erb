@@ -1,5 +1,6 @@
 
 
+
 <div class="container">
 
   <div id="map_container"></div>
@@ -64,6 +65,7 @@ window.onload = function () {
 
 
 <!-- <div style="text-align:center;"><br><br><br>
+
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">See all flights</button><br><br><br><br>
 </div>
 <div id="demo" class="collapse"> -->
@@ -80,17 +82,20 @@ window.onload = function () {
           <%flights = city[0]%>
 
           <h5 class="mb-1">Flights to <%=convert_airportcode_to_destination(flights[0]["destination"])%></h5>
-           <% flights.each_with_index do |flight, index| %>
+            <% flights.each_with_index do |flight, index| %>
               <p class="mb-1">Ticket price: <%= flight["saleTotal"] %></p>
               <p class="mb-1"><%= flights_date(flight["departure_time_when_leaving_home"])%> ----- <%= flights_date(flight["arrival_time_when_leaving_home"]) %></p>
               <p class="mb-1"><%= flight["origin"] %> ----------------------------- <%= flight["destination"] %></p>
               <p class="mb-1"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"]) %></p>
               <p class="mb-1"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
+              <% if logged_in? %>
               <p class="btn btn-success submit"><a href="/users/<%= city_index*10 + index+1%>/savetrip" class="list-group-item list-group-item-action">Save flight to wishlist<a></p>
+              <% end %>
             <% end %>
 
             <br>
 
+            hotels = city[1]
 
         <a href="/trip/<%=1+city_index*10%>">Attractions in <%=convert_airportcode_to_destination(city[0][0]["destination"]) %></a><br>
 
@@ -99,8 +104,11 @@ window.onload = function () {
         <a href="/trip/<%=1+city_index*10%>/locations/beaches">Beaches in <%=convert_airportcode_to_destination(city[0][0]["destination"])%></a><br>
         <a href="/trip/<%=1+city_index*10%>/locations/bars">Bars in <%=convert_airportcode_to_destination(city[0][0]["destination"])%></a><br>
 
-        <% end %>
+
       </div>
+
+
+<% end %></div>
 
 
 

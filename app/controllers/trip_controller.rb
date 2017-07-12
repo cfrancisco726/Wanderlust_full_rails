@@ -16,20 +16,19 @@ class TripController < ApplicationController
 
   def google_place
     @flight_data = ResponseFlightData.find(params[:trip_id])
-
     @client = GooglePlaces::Client.new("AIzaSyC6QVsR2_7tYbCiMCIWqEwg_6_EV6XHBIE")
-
     @attractions = @client.spots_by_query("#{params[:location]} by #{convert_airportcode_to_destination(@flight_data[:destination])}")
-
     @attraction_photo = @attractions
-
     render "google_place"
   end
 
   def index
     @cheapest_flights = ResponseFlightData.all.each_slice(10).to_a
     @airports = []
-
+    @cheapest_flights.map! do |city|
+      [city, ['hotel1', 'hotel2']]
+    end
+    # binding.pry
     render "trip_details"
   end
 
@@ -69,6 +68,7 @@ class TripController < ApplicationController
       @cheapest_flights << city
     end
 
+    # binding.pry
       # @cheapest_flights = @array_flights_den + @array_flights_lax + @array_flights_mia
 
     ResponseFlightData.delete_all
@@ -93,7 +93,6 @@ class TripController < ApplicationController
 
 
     @hash = Gmaps4rails.build_markers(@airports) do |airport, marker|
-
 
       marker.lat(airport.latitude)
       marker.lng(airport.longitude)
