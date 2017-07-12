@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
             }
           ],
           "maxPrice": "USD#{budget}",
-          "solutions": "10"
+          "solutions": "1"
         }
       }
   end
@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
             }
           ],
           "maxPrice": "USD#{budget}",
-          "solutions": "10"
+          "solutions": "1"
         }
       }
   end
@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
 
 
   def api_call(body)
-    RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCEodSzpD3t7d7_Bvk076631LTmITGVKfs',
+    RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCRc7Fubn68ipT_1TnO8GrpuaHbUHI2how',
     body.to_json, :content_type => :json
   end
 
