@@ -5,15 +5,16 @@ class TripController < ApplicationController
 
   def show
     @flight_data = ResponseFlightData.find(params[:id])
-    @client = GooglePlaces::Client.new("AIzaSyDbE5SezAQw9N64OZH9UyiEXWhK7x_GIMA")
+    @client = GooglePlaces::Client.new("AIzaSyC6QVsR2_7tYbCiMCIWqEwg_6_EV6XHBIE")
     @attractions = @client.spots_by_query("Vacation attractions by #{convert_airportcode_to_destination(@flight_data[:destination])}")
 
     @attraction_photo = @attractions
   end
 
+binding.pry
   def google_place
     @flight_data = ResponseFlightData.find(params[:trip_id])
-    @client = GooglePlaces::Client.new("AIzaSyDbE5SezAQw9N64OZH9UyiEXWhK7x_GIMA")
+    @client = GooglePlaces::Client.new("AIzaSyC6QVsR2_7tYbCiMCIWqEwg_6_EV6XHBIE")
     @attractions = @client.spots_by_query("#{params[:location]} by #{convert_airportcode_to_destination(@flight_data[:destination])}")
 
     @attraction_photo = @attractions
@@ -44,10 +45,10 @@ class TripController < ApplicationController
     # end
 
 
-    parsed_data_den = JSON.parse(api_call(req_body_den(origin, departure_date, arrival_date, passengers, budget)).body)
-    @array_flights_den = parse_api_response(parsed_data_den)
-    parsed_data_lax = JSON.parse(api_call(req_body_lax(origin, departure_date, arrival_date, passengers, budget)).body)
-    @array_flights_lax = parse_api_response(parsed_data_lax)
+    # parsed_data_den = JSON.parse(api_call(req_body_den(origin, departure_date, arrival_date, passengers, budget)).body)
+    # @array_flights_den = parse_api_response(parsed_data_den)
+    # parsed_data_lax = JSON.parse(api_call(req_body_lax(origin, departure_date, arrival_date, passengers, budget)).body)
+    # @array_flights_lax = parse_api_response(parsed_data_lax)
 
     @cheapest_flights = []
 
@@ -82,7 +83,7 @@ class TripController < ApplicationController
       marker.infowindow(airport.location)
 
     end
-  
+
     render "trip_details"
   end
 
