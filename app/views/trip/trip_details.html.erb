@@ -1,9 +1,8 @@
 
-<h4 class="mb-1">List of flights</h4>
-
-
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+<div class="container">
+  <h1> Pick your flight! </h1>
+  <div id="map_container"></div>
+  <div id="map"></div>
 </div>
 <script>
 window.onload = function () {
@@ -30,14 +29,41 @@ window.onload = function () {
 
             });
         })(marker, data);
+
     }
 }
 </script>
-<%= @airports.to_json %>
 <style>
-#map {
-        height: 100%;
-      }
+h1{
+  font-size: 45px;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  color:black;
+  margin-bottom: 40px;
+  color: #000;
+  text-shadow: 0 2px 3px #555555;
+  font-family: Tahoma;
+}
+
+
+.container{
+  width: 100%;
+  margin: 0 auto;
+  margin-top:50px;
+}
+
+#map_container{
+  position: relative;
+}
+#map{
+    height: 500px;
+    overflow: hidden;
+    padding-bottom: 22.25%;
+    padding-top: 30px;
+    position: relative;
+}
+
 </style>
 
 
@@ -59,7 +85,6 @@ window.onload = function () {
           <p class="mb-1"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"]) %></p>
           <p class="mb-1"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
           <p class="mb-1"><a href="/users/<%=city_index*10 + index+1%>/savetrip" class="list-group-item list-group-item-action">Save flight to wishlist<a></p>
-        <% end %>
 
 
         <a href="/trip/<%=1+city_index*10%>">Attractions in <%=convert_airportcode_to_destination(city[0]["destination"]) %></a><br>
@@ -69,6 +94,7 @@ window.onload = function () {
         <a href="/trip/<%=1+city_index*10%>/locations/beaches">Beaches in <%=convert_airportcode_to_destination(city[0]["destination"])%></a><br>
         <a href="/trip/<%=1+city_index*10%>/locations/bars">Bars in <%=convert_airportcode_to_destination(city[0]["destination"])%></a><br>
 
+        <% end %>
       </div>
     </div><br><br><br><br><br>
 

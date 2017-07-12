@@ -73,10 +73,9 @@ class TripController < ApplicationController
 
       marker.lat(airport.latitude)
       marker.lng(airport.longitude)
-      marker.infowindow(airport.location)
+      marker.infowindow airport.location
 
     end
-
 
 
 
