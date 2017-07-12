@@ -1,7 +1,71 @@
 
 
-<!--
- <div style="text-align:center;"><br><br><br>
+
+<div class="container">
+
+  <div id="map_container"></div>
+  <div id="map"></div>
+</div>
+<script>
+window.onload = function () {
+    var markers = <%=raw @hash.to_json %>;
+    var mapOptions = {
+        center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+        zoom: 3,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var infoWindow = new google.maps.InfoWindow();
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    for (i = 0; i < markers.length; i++) {
+        var data = markers[i]
+        var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+        marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: data.location
+        });
+
+
+        (function (marker, data) {
+            google.maps.event.addListener(marker, "click", function (e) {
+              var imgUrl = "/assets/" + data.picture.url
+                infoWindow.setContent(`<div><div> <img src=${imgUrl} alt="Smiley face" height="100" width="200"> </div> ${data.infowindow}</div>` );
+                infoWindow.open(map, marker);
+
+            });
+        })(marker, data);
+
+    }
+}
+</script>
+<style>
+
+
+.container{
+  width: 100%;
+  margin: 0 auto;
+  margin-top:50px;
+}
+
+#map_container{
+  position: relative;
+}
+#map{
+    height: 500px;
+    overflow: hidden;
+    padding-bottom: 22.25%;
+    padding-top: 30px;
+    position: relative;
+}
+
+</style>
+
+
+
+
+
+<!-- <div style="text-align:center;"><br><br><br>
+
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">See all flights</button><br><br><br><br>
 </div>
 <div id="demo" class="collapse"> -->
@@ -42,6 +106,13 @@
 
 
       </div>
-    </div><br><br><br><br><br>
+
 
 <% end %></div>
+
+
+
+
+
+
+

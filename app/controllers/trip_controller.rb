@@ -75,7 +75,7 @@ class TripController < ApplicationController
     ResponseFlightData.reset_pk_sequence
 
     @airports = []
-    # binding.pry
+
     @cheapest_flights.each do |city|
       flights = city[0]
       flights.each do |flight|
@@ -90,13 +90,18 @@ class TripController < ApplicationController
       end
     end
 
-      # binding.pry
+
 
     @hash = Gmaps4rails.build_markers(@airports) do |airport, marker|
 
       marker.lat(airport.latitude)
       marker.lng(airport.longitude)
       marker.infowindow airport.location
+      marker.picture({
+                  :url => airport.image_url,
+                  :width   => 32,
+                  :height  => 32
+                 })
 
     end
 
