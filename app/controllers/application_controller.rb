@@ -171,4 +171,32 @@ class ApplicationController < ActionController::Base
      end
      hotel_details
   end
+
+def autocomplete(term)
+	base_url = "http://api.sandbox.amadeus.com/v1.2/airports/autocomplete?apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe&term=${term}"
+	data = open(base_url).read
+	response = JSON.parse(data, headers: true, header_converters: :symbol)
+end
+
+# works in browswer not in terminal
+# def flight_query(starting, departure_date, returning_date, budget)
+# 	base_url = "http://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?origin=#{starting}&departure_date=#{departure_date}--#{returning_date}&max_price=${budget}&apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe"
+#     data = open(base_url).read
+#     response = JSON.parse(data, headers: true, header_converters: :symbol)
+# end
+#
+# def flights_parse_response(flight_query)
+# 	flight_details = {}
+# 			flight_query.each do |key, value|
+# 	  	value.each do |key1, value1|
+# 			hotel_details["destination"] = key1["destination"]
+# 			hotel_details["departure_date"] = key1["departure_date"]
+# 			hotel_details["return_date"] = key1["return_date"]
+# 			hotel_details["price"] = key1["price"]
+# 			hotel_details["airline"] = key1["airline"]
+# 			end
+#   	end
+# 		puts flight_details
+# end
+
 end
