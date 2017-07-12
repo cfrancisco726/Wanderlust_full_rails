@@ -5,6 +5,7 @@ class CreateAirportHelperTables < ActiveRecord::Migration[5.1]
       t.string :airport_code
       t.decimal :longitude
       t.decimal :latitude
+      t.string :image_url
       t.timestamps
     end
   end
