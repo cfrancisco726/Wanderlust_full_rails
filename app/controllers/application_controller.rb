@@ -172,6 +172,12 @@ class ApplicationController < ActionController::Base
      hotel_details
   end
 
+def autocomplete(term)
+	base_url = "http://api.sandbox.amadeus.com/v1.2/airports/autocomplete?apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe&term=${term}"
+	data = open(base_url).read
+	response = JSON.parse(data, headers: true, header_converters: :symbol)
+end
+
 # works in browswer not in terminal
 # def flight_query(starting, departure_date, returning_date, budget)
 # 	base_url = "http://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?origin=#{starting}&departure_date=#{departure_date}--#{returning_date}&max_price=${budget}&apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe"
