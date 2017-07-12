@@ -63,12 +63,12 @@ window.onload = function () {
 
 
 
-
 <!-- <div style="text-align:center;"><br><br><br>
 
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">See all flights</button><br><br><br><br>
 </div>
 <div id="demo" class="collapse"> -->
+
 
 
 <% @cheapest_flights.each_with_index do |city, city_index| %>
@@ -88,9 +88,11 @@ window.onload = function () {
               <p class="mb-1"><%= flight["origin"] %> ----------------------------- <%= flight["destination"] %></p>
               <p class="mb-1"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"]) %></p>
               <p class="mb-1"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
+
               <% if logged_in? %>
               <p class="btn btn-success submit"><a href="/users/<%= city_index*10 + index+1%>/savetrip" class="list-group-item list-group-item-action">Save flight to wishlist<a></p>
               <% end %>
+
             <% end %>
 
             <br>
