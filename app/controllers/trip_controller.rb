@@ -93,13 +93,19 @@ class TripController < ApplicationController
       binding.pry
 
     @hash = Gmaps4rails.build_markers(@airports) do |airport, marker|
-    # binding.pry
-      #
-      # marker.lat(airport.latitude)
-      # marker.lng(airport.longitude)
-      # marker.infowindow(airport.location)
+
+
+      marker.lat(airport.latitude)
+      marker.lng(airport.longitude)
+      marker.infowindow airport.location
 
     end
+
+
+
+
+    end
+
 
     render "trip_details"
   end
