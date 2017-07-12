@@ -66,3 +66,18 @@ body {
 .color{
   color: white;
 }
+ 
+ #form {
+ padding: 0px 200px 20px 200px;
+ }
+
+ .submit{
+     font-size: 1.1em;
+     width: 300px;
+     height:50px;
+     background-color: #2b717d ;
+     color: #fff;
+     border:none;
+     margin:30px;
+   }
+   .submit:hover {background-color: #3d9eaf }
