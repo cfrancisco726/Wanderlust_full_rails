@@ -70,10 +70,9 @@ class TripController < ApplicationController
       marker.lat(airport.latitude)
       marker.lng(airport.longitude)
 
-
-      @cheapest_flights.each_with_index do |flight, index|
-        marker.infowindow render_to_string(:partial => "/trip/flight_details", locals: { flight: flight, index: index})
-      end
+      flight = @cheapest_flights.find {|flight| flight["destination"] == airport.airport_code }
+      index = @cheapest_flights.find_index(flight)
+      marker.infowindow render_to_string(:partial => "/trip/flight_details", locals: { flight: flight, index: index})
       marker.picture({
                   :url => airport.image_url,
                   :width   => 32,
@@ -81,7 +80,6 @@ class TripController < ApplicationController
                  })
 
     end
-
 
     render "trip_details"
   end
