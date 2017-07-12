@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-
-
   root 'trip#new'
 
   resources :sessions
 
   resources :trip, only: [:show, :create, :index]
-
+  resources :trip do
+    resources :hotels, only: [:index]
+  end
 
    # get '/users/logout' to: 'users#logout'
   # post '/users/login' to: 'users#create_session'

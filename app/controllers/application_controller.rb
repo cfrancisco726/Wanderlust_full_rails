@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :lat_long, :current_user, :logged_in?, :api_call, :parse_api_response, :convert_airportcode_to_destination, :flights_date
+  helper_method :lat_long, :current_user, :logged_in?, :api_call, :parse_api_response, :convert_airportcode_to_destination, :flights_date, :hotel_query, :hotel_query
 
 
   def current_user
@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
 
 
   def api_call(body)
-    RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyDQlVvdzPVGCZ7UZdovGEeyREAXvKdteV0',
+    RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCEodSzpD3t7d7_Bvk076631LTmITGVKfs',
     body.to_json, :content_type => :json
   end
 
@@ -147,11 +147,56 @@ class ApplicationController < ActionController::Base
       "Jackson Hole"
     end
   end
-  
-  def api_call_hotel(check_in, max_rate)
-    base_url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=latitude=43.6&longitude=7.2&radius=50&check_in=#{check_in}&check_out=#{'2017-09-03'}&chain=RT&cy=USD&number_of_results=20&max_rate=#{max_rate}&apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe"
-    data = open(base_url).read
-    response = JSON.parse(data, headers: true, header_converters: :symbol)
+
+  def hotel_query(latitude, longitude, check_in, check_out, max_rate)
+     base_url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=#{latitude}&longitude=#{longitude}&radius=50&check_in=#{check_in}&check_out=#{check_out}&chain=RT&cy=USD&number_of_results=10&max_rate=#{max_rate}&apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe"
+     data = open(base_url).read
+     response = JSON.parse(data, headers: true, header_converters: :symbol)
   end
+
+  def hotels_parse_response(hotel_query)
+   hotel_details = {}
+       hotel_query.each do |key, value|
+       value.each do |key1, value1|
+         hotel_details["property name"] = key1["property_name"]
+         hotel_details["longitude and latitude"] = key1["location"]
+         hotel_details["room type"] = key1["room_type_code"]
+         hotel_details["price"] = key1["total_price "]
+         hotel_details["min daily rate"] = key1["min_daily_rate "]
+         hotel_details["contact"] = key1["contacts"]
+         hotel_details["rating"] = key1["awards"][0]
+         hotel_details["room type"] = key1["room_type_info"]
+         hotel_details["address"] = key1["address"]
+       end
+     end
+     hotel_details
+  end
+
+def autocomplete(term)
+	base_url = "http://api.sandbox.amadeus.com/v1.2/airports/autocomplete?apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe&term=${term}"
+	data = open(base_url).read
+	response = JSON.parse(data, headers: true, header_converters: :symbol)
+end
+
+# works in browswer not in terminal
+# def flight_query(starting, departure_date, returning_date, budget)
+# 	base_url = "http://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?origin=#{starting}&departure_date=#{departure_date}--#{returning_date}&max_price=${budget}&apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe"
+#     data = open(base_url).read
+#     response = JSON.parse(data, headers: true, header_converters: :symbol)
+# end
+#
+# def flights_parse_response(flight_query)
+# 	flight_details = {}
+# 			flight_query.each do |key, value|
+# 	  	value.each do |key1, value1|
+# 			hotel_details["destination"] = key1["destination"]
+# 			hotel_details["departure_date"] = key1["departure_date"]
+# 			hotel_details["return_date"] = key1["return_date"]
+# 			hotel_details["price"] = key1["price"]
+# 			hotel_details["airline"] = key1["airline"]
+# 			end
+#   	end
+# 		puts flight_details
+# end
 
 end
