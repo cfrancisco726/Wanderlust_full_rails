@@ -43,7 +43,7 @@ class TripController < ApplicationController
 
     parsed_data_den = JSON.parse(api_call(req_body_den(origin, departure_date, arrival_date, passengers, budget)).body)
     @array_flights_den = parse_api_response(parsed_data_den)
-
+    binding.pry
     parsed_data_lax = JSON.parse(api_call(req_body_lax(origin, departure_date, arrival_date, passengers, budget)).body)
     @array_flights_lax = parse_api_response(parsed_data_lax)
 
@@ -65,8 +65,8 @@ class TripController < ApplicationController
     end
     binding.pry
 
-    
 
+    binding.pry
     render "trip_details"
   end
 
