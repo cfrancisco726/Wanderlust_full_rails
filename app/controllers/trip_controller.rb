@@ -61,7 +61,7 @@ class TripController < ApplicationController
       parsed_data_den = JSON.parse(api_call(req_body(origin, departure_date, arrival_date, passengers, budget, airport_code)).body)
       @array_flight= parse_api_response(parsed_data_den)
 
-      
+
       city = []
       @array_hotel = [3,4,5,6,7]
       city << @array_flight
@@ -75,7 +75,7 @@ class TripController < ApplicationController
     ResponseFlightData.reset_pk_sequence
 
     @airports = []
-
+    binding.pry
     @cheapest_flights.each do |city|
       flights = city[0]
       flights.each do |flight|
