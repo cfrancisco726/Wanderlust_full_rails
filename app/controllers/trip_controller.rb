@@ -11,7 +11,7 @@ class TripController < ApplicationController
     @attraction_photo = @attractions
   end
 
-binding.pry
+
   def google_place
     @flight_data = ResponseFlightData.find(params[:trip_id])
     @client = GooglePlaces::Client.new("AIzaSyC6QVsR2_7tYbCiMCIWqEwg_6_EV6XHBIE")
@@ -51,15 +51,19 @@ binding.pry
     # @array_flights_lax = parse_api_response(parsed_data_lax)
 
     @cheapest_flights = []
+    hotels =  [1,2,3,4]
 
     ['DEN', 'LAX', 'MIA', 'FCO'].each do |airport_code|
       parsed_data_den = JSON.parse(api_call(req_body(origin, departure_date, arrival_date, passengers, budget, airport_code)).body)
       @array_flight= parse_api_response(parsed_data_den)
-      @cheapest_flights << @array_flight
+
+      
+      city = []
+      @array_hotel = [3,4,5,6,7]
+      city << @array_flight
+      city << @array_hotel
+      @cheapest_flights << city
     end
-
-
-
 
       # @cheapest_flights = @array_flights_den + @array_flights_lax + @array_flights_mia
 
@@ -68,19 +72,28 @@ binding.pry
 
     @airports = []
 
-    @cheapest_flights.flatten.each do |flight|
+    @cheapest_flights.each do |city|
+      flights = city[0]
+      flights.each do |flight|
+        flight_data = ResponseFlightData.new({saleTotal: flight["saleTotal"], carrier: flight["carrier"], arrival_time_when_leaving_home: flight["arrival_time_when_leaving_home"], departure_time_when_leaving_home: flight["departure_time_when_leaving_home"], arrival_time_when_coming_home: flight["arrival_time_when_coming_home"], departure_time_when_coming_home: flight["departure_time_when_coming_home"], origin: flight["origin"], destination: flight["destination"]})
+        flight_data.save
+        @airports << AirportHelperTable.find_by(airport_code: flight_data.destination)
+      end
 
-      flight_data = ResponseFlightData.new({saleTotal: flight["saleTotal"], carrier: flight["carrier"], arrival_time_when_leaving_home: flight["arrival_time_when_leaving_home"], departure_time_when_leaving_home: flight["departure_time_when_leaving_home"], arrival_time_when_coming_home: flight["arrival_time_when_coming_home"], departure_time_when_coming_home: flight["departure_time_when_coming_home"], origin: flight["origin"], destination: flight["destination"]})
-      flight_data.save
-      @airports << AirportHelperTable.find_by(airport_code: flight_data.destination)
-
+      hotels = city[1]
+      hotels.each do |hotel|
+        p hotel
+      end
     end
 
-    @hash = Gmaps4rails.build_markers(@airports) do |airport, marker|
+      binding.pry
 
-      marker.lat(airport.latitude)
-      marker.lng(airport.longitude)
-      marker.infowindow(airport.location)
+    @hash = Gmaps4rails.build_markers(@airports) do |airport, marker|
+    # binding.pry
+      #
+      # marker.lat(airport.latitude)
+      # marker.lng(airport.longitude)
+      # marker.infowindow(airport.location)
 
     end
 
