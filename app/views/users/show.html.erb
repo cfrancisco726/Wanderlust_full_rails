@@ -1,12 +1,13 @@
-<br><br><h2 class="color" align="center"><%= current_user.name %>'s Saved Flights</h2> <br><br>
+<h2 class="color" align="center"><%= current_user.name %>'s Saved Flights</h2> <br><br>
 
 
-<div align="center">
+<div align="center" class="contain">
+<span class="color">Here are trips</span>
 <% current_user.save_user_trips.each do |flight| %>
-  <p class="mb-1">Ticket price: <%= flight["saleTotal"] %></p>
-  <p class="mb-1"><%= flights_date(flight["departure_time_when_leaving_home"])%> ----- <%= flights_date(flight["arrival_time_when_leaving_home"]) %></p>
-  <p class="mb-1"><%= flight["origin"] %> ----------------------------- <%= flight["destination"] %></p>
-  <p class="mb-1"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"]) %></p>
-  <p class="mb-1"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p><br>
+  <p class="color mb-1">Ticket price: <%= flight["saleTotal"] %></p>
+  <p class="color mb-1"><%= flights_date(flight["departure_time_when_leaving_home"])%> ----- <%= flights_date(flight["arrival_time_when_leaving_home"]) %></p>
+  <p class="color mb-1"><%= flight["origin"] %> ----------------------------- <%= flight["destination"] %></p>
+  <p class="color mb-1"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"]) %></p>
+  <p class="color mb-1"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p><br>
 <% end %>
 </div>
