@@ -60,7 +60,7 @@ window.onload = function () {
               <p class="btn btn-success submit"><a href="/users/<%=city_index*10 + index+1%>/savetrip" class="list-group-item list-group-item-action">Save flight to wishlist<a></p>
             <% end %>
 
-
+            <br>
         <a href="/trip/<%=1+city_index*10%>">Attractions in <%=convert_airportcode_to_destination(city[0]["destination"]) %></a><br>
 
         <a href="/trip/<%=1+city_index*10%>/locations/museum">Museums in <%=convert_airportcode_to_destination(city[0]["destination"])%></a><br>

@@ -149,26 +149,26 @@ class ApplicationController < ActionController::Base
   end
 
   def hotel_query(latitude, longitude, check_in, check_out, max_rate)
-  	base_url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=#{latitude}&longitude=#{longitude}&radius=50&check_in=#{check_in}&check_out=#{check_out}&chain=RT&cy=USD&number_of_results=10&max_rate=#{max_rate}&apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe"
-    data = open(base_url).read
-    JSON.parse(data, headers: true, header_converters: :symbol)
+     base_url = "http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=#{latitude}&longitude=#{longitude}&radius=50&check_in=#{check_in}&check_out=#{check_out}&chain=RT&cy=USD&number_of_results=10&max_rate=#{max_rate}&apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe"
+     data = open(base_url).read
+     response = JSON.parse(data, headers: true, header_converters: :symbol)
   end
 
-  def hotels_parse_response
-
-      hotel_query.each do |key, value|
-      	value.map do |key1, value1|
-    			hotels << key1["property_name"]
-    			hotels << key1["location"]
-    			hotels << key1["room_type_code"]
-    			hotels << key1["total_price "]
-    			hotels << key1["min_daily_rate "]
-    			hotels << key1["contacts"]
-    			hotels << key1["awards"]
-    			hotels << key1["room_type_info"]
-    			hotels << key1["address"]
-		    end
-      end
-      binding.pry
-    end
+  def hotels_parse_response(hotel_query)
+   hotel_details = {}
+       hotel_query.each do |key, value|
+       value.each do |key1, value1|
+         hotel_details["property name"] = key1["property_name"]
+         hotel_details["longitude and latitude"] = key1["location"]
+         hotel_details["room type"] = key1["room_type_code"]
+         hotel_details["price"] = key1["total_price "]
+         hotel_details["min daily rate"] = key1["min_daily_rate "]
+         hotel_details["contact"] = key1["contacts"]
+         hotel_details["rating"] = key1["awards"][0]
+         hotel_details["room type"] = key1["room_type_info"]
+         hotel_details["address"] = key1["address"]
+       end
+     end
+     hotel_details
+  end
 end

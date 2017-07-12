@@ -11,6 +11,7 @@ class TripController < ApplicationController
     @attraction_photo = @attractions
   end
 
+binding.pry
   def google_place
     @flight_data = ResponseFlightData.find(params[:trip_id])
     @client = GooglePlaces::Client.new("AIzaSyC6QVsR2_7tYbCiMCIWqEwg_6_EV6XHBIE")
