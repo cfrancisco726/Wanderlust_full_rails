@@ -5,7 +5,9 @@ class TripController < ApplicationController
 
   def show
     @flight_data = ResponseFlightData.find(params[:id])
+
     @client = GooglePlaces::Client.new("AIzaSyC6QVsR2_7tYbCiMCIWqEwg_6_EV6XHBIE")
+
     @attractions = @client.spots_by_query("Vacation attractions by #{convert_airportcode_to_destination(@flight_data[:destination])}")
 
     @attraction_photo = @attractions
@@ -14,7 +16,9 @@ class TripController < ApplicationController
 binding.pry
   def google_place
     @flight_data = ResponseFlightData.find(params[:trip_id])
+
     @client = GooglePlaces::Client.new("AIzaSyC6QVsR2_7tYbCiMCIWqEwg_6_EV6XHBIE")
+
     @attractions = @client.spots_by_query("#{params[:location]} by #{convert_airportcode_to_destination(@flight_data[:destination])}")
 
     @attraction_photo = @attractions
