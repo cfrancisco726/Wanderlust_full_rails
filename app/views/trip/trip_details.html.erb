@@ -50,7 +50,7 @@ window.onload = function () {
         <div class="d-flex w-100 justify-content-between" style="color: #fff;">
           <h4 class="mb-1">List of flights</h4>
           <%flights = city[0]%>
-        
+
           <h5 class="mb-1">Flights to <%=convert_airportcode_to_destination(flights[0]["destination"])%></h5>
            <% flights.each_with_index do |flight, index| %>
               <p class="mb-1">Ticket price: <%= flight["saleTotal"] %></p>
@@ -64,8 +64,9 @@ window.onload = function () {
             <br>
 
 
-        <a href="/trip/<%=1+city_index*10%>">Attractions in <%=convert_airportcode_to_destination(city[0][0]["destination"]) %></a><br>
 
+        <a href="/trip/<%=1+city_index*10%>">Attractions in <%=convert_airportcode_to_destination(city[0][0]["destination"]) %></a><br>
+        <a href="/trip/<%=1+city_index*10%>/locations/hotels">Hotels <%=convert_airportcode_to_destination(city[0][0]["destination"]) %></a><br>
         <a href="/trip/<%=1+city_index*10%>/locations/museum">Museums in <%=convert_airportcode_to_destination(city[0][0]["destination"])%></a><br>
         <a href="/trip/<%=1+city_index*10%>/locations/restaurants">Restaurants in <%=convert_airportcode_to_destination(city[0][0]["destination"])%></a><br>
         <a href="/trip/<%=1+city_index*10%>/locations/beaches">Beaches in <%=convert_airportcode_to_destination(city[0][0]["destination"])%></a><br>

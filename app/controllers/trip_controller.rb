@@ -61,7 +61,13 @@ class TripController < ApplicationController
       parsed_data_den = JSON.parse(api_call(req_body(origin, departure_date, arrival_date, passengers, budget, airport_code)).body)
       @array_flight= parse_api_response(parsed_data_den)
 
-      
+      # first array is flights, second hotels,
+      # make table with hotel response keys
+      # make table responseHotels like ResponseFlightData
+      # fix migration for hotel
+      # cheapest_flights is an array of arrays
+      # [[[],[]],[]]
+
       city = []
       @array_hotel = [3,4,5,6,7]
       city << @array_flight
@@ -90,7 +96,7 @@ class TripController < ApplicationController
       end
     end
 
-      binding.pry
+      # binding.pry
 
     @hash = Gmaps4rails.build_markers(@airports) do |airport, marker|
     # binding.pry
