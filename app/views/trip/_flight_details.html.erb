@@ -62,13 +62,12 @@ button.btn.btn-success.submit a {
               <% end %>
 
         <div class="bottom-container-links">
-          <a class="btn btn-success" href="/trip/<%=1+index%>">Attractions in <%=convert_airportcode_to_destination(flight["destination"]) %></a>
-          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/hotels">Hotels in <%=convert_airportcode_to_destination(flight["destination"])%></a>
-          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/museum">Museums in <%=convert_airportcode_to_destination(flight["destination"])%></a>
-          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/restaurants">Restaurants in <%=convert_airportcode_to_destination(flight["destination"])%></a>
-          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/beaches">Beaches in <%=convert_airportcode_to_destination(flight["destination"])%></a>
-          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/bars">Bars in <%=convert_airportcode_to_destination(flight["destination"])%></a>
-          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/hotels">Hotels in <%=convert_airportcode_to_destination(flight["destination"])%></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>" target="_blank">Attractions in <%=convert_airportcode_to_destination(flight["destination"]) %></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/hotels" target="_blank">Hotels in <%=convert_airportcode_to_destination(flight["destination"])%></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/museum" target="_blank">Museums in <%=convert_airportcode_to_destination(flight["destination"])%></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/restaurants" target="_blank">Restaurants in <%=convert_airportcode_to_destination(flight["destination"])%></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/beaches" target="_blank">Beaches in <%=convert_airportcode_to_destination(flight["destination"])%></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/bars" target="_blank">Bars in <%=convert_airportcode_to_destination(flight["destination"])%></a>
       </div>
 
       </div>
