@@ -27,10 +27,12 @@ window.onload = function () {
         });
 
 
+
         (function (marker, data) {
             google.maps.event.addListener(marker, "click", function (e) {
               var imgUrl = "/assets/" + data.picture.url
                 infoWindow.setContent(`<div><div> <img src=${imgUrl} alt="Smiley face" height="100" width="200"> </div> ${data.infowindow}</div>` );
+              
                 infoWindow.open(map, marker);
 
             });

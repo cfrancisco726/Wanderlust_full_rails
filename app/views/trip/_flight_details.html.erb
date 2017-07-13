@@ -46,7 +46,6 @@ button.btn.btn-success.submit a {
 
         <div class="d-flex w-100 justify-content-between" style="color: #fff;">
 
-
           <h4 class="mb-1 black">Flights to <%=convert_airportcode_to_destination(flight["destination"])%></h4>
 
               <p class="mb-1 black ticket-price">Ticket price: <%= flight["saleTotal"] %></p>
@@ -66,6 +65,7 @@ button.btn.btn-success.submit a {
           <a class="btn btn-success" href="/trip/<%=1+index%>/locations/restaurants">Restaurants in <%=convert_airportcode_to_destination(flight["destination"])%></a>
           <a class="btn btn-success" href="/trip/<%=1+index%>/locations/beaches">Beaches in <%=convert_airportcode_to_destination(flight["destination"])%></a>
           <a class="btn btn-success" href="/trip/<%=1+index%>/locations/bars">Bars in <%=convert_airportcode_to_destination(flight["destination"])%></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/hotels">Hotels in <%=convert_airportcode_to_destination(flight["destination"])%></a>
       </div>
 
       </div>
