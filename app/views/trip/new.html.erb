@@ -1,22 +1,31 @@
 
+<div class="errors">
+  <% if @errors %>
+    <%@errors.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+</div>
+
+
+
 <div id="form">
 <%= bootstrap_form_for(@trip, url: {action: "create"}, html: {class: "experiment_form"}) do |f| %>
   <div class="form-group col-xs-6 center color">
-  <p><%= f.text_field :budget, :class=>'betaTextField'%></p>
+  <p><%= f.text_field :budget, :class=>'betaTextField', required: true%></p>
   </div>
   <div class="form-group col-xs-6 center color">
-  <p><%= f.text_field :origin%></p>
+  <p><%= f.text_field :origin, required: true%></p>
   </div>
   <div class="form-group col-xs-6 center color">
-  <p><%= f.text_field :passengers%></p>
+  <p><%= f.text_field :passengers, required: true%></p>
   </div>
   <div class="form-group col-xs-3 center color">
- 
-  <p><%= f.date_field :departure_date %></p>
+  <p><%= f.date_field :departure_date, required: true%></p>
   </div>
   <div class="form-group col-xs-3 center color">
 
-  <p><%= f.date_field :arrival_date %></p>
+  <p><%= f.date_field :arrival_date ,required: true%></p>
   </div>
   <br>
   <p align="center"><%= f.submit "Go!", class: "btn btn-success submit"%></p>

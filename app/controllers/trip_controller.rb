@@ -22,17 +22,28 @@ class TripController < ApplicationController
     render "google_place"
   end
 
+  # def google_hotels
+  #   @flight_data = ResponseFlightData.find(params[:trip_id])
+  #
+  #   @client = GooglePlaces::Client.new("AIzaSyC6QVsR2_7tYbCiMCIWqEwg_6_EV6XHBIE")
+  #
+  #   @hotel_details = @client.spots_by_query("#{params[:location]} by #{convert_airportcode_to_destination(@flight_data[:destination])}", :types => ['hotel'], :exclude => ['cafe', 'establishment')
+  #
+  #   @attraction_photo = @attractions
+  #
+  #   render "google_place"
+  # end
+
   def index
-    @cheapest_flights = ResponseFlightData.all.each_slice(10).to_a
-    @airports = []
-    @cheapest_flights.map! do |city|
-      [city, ['hotel1', 'hotel2']]
-    end
+    @cheapest_flights = ResponseFlightData.all
     # binding.pry
     render "trip_details"
   end
 
   def create
+
+    # render_to_string :partial => "trip/foo_bar"
+
 
     @trip = Trip.new(trip_params)
     origin = trip_params[:origin]
@@ -41,80 +52,53 @@ class TripController < ApplicationController
     passengers = trip_params[:passengers]
     budget = trip_params[:budget]
 
+    if !@trip.validate_dates.empty?
+      @errors = @trip.validate_dates
+      render 'new'
+    else
 
-    # @hash = Gmaps4rails.build_markers(@users) do |user, marker|
-    # marker.lat user.latitude
-    # marker.lng user.longitude
-    # end
-
-
-    # parsed_data_den = JSON.parse(api_call(req_body_den(origin, departure_date, arrival_date, passengers, budget)).body)
-    # @array_flights_den = parse_api_response(parsed_data_den)
-    # parsed_data_lax = JSON.parse(api_call(req_body_lax(origin, departure_date, arrival_date, passengers, budget)).body)
-    # @array_flights_lax = parse_api_response(parsed_data_lax)
-
-    @cheapest_flights = []
-    hotels =  [1,2,3,4]
-
-    ['DEN', 'LAX', 'MIA', 'FCO'].each do |airport_code|
-      parsed_data_den = JSON.parse(api_call(req_body(origin, departure_date, arrival_date, passengers, budget, airport_code)).body)
-      @array_flight= parse_api_response(parsed_data_den)
-
-      # first array is flights, second hotels,
-      # make table with hotel response keys
-      # make table responseHotels like ResponseFlightData
-      # fix migration for hotel
-      # cheapest_flights is an array of arrays
-      # [[[],[]],[]]
-
-
-      city = []
-      @array_hotel = [3,4,5,6,7]
-      city << @array_flight
-      city << @array_hotel
-      @cheapest_flights << city
-    end
-
-    # binding.pry
-      # @cheapest_flights = @array_flights_den + @array_flights_lax + @array_flights_mia
-
-    ResponseFlightData.delete_all
-    ResponseFlightData.reset_pk_sequence
-
-    @airports = []
-
-    @cheapest_flights.each do |city|
-      flights = city[0]
-      flights.each do |flight|
-        flight_data = ResponseFlightData.new({saleTotal: flight["saleTotal"], carrier: flight["carrier"], arrival_time_when_leaving_home: flight["arrival_time_when_leaving_home"], departure_time_when_leaving_home: flight["departure_time_when_leaving_home"], arrival_time_when_coming_home: flight["arrival_time_when_coming_home"], departure_time_when_coming_home: flight["departure_time_when_coming_home"], origin: flight["origin"], destination: flight["destination"]})
-        flight_data.save
-        @airports << AirportHelperTable.find_by(airport_code: flight_data.destination)
+      @cheapest_flights = []
+      #
+      #
+      ['DEN','LAX', 'MIA', 'FCO', 'LHR'].each do |airport_code|
+        parsed_data_den = JSON.parse(api_call(req_body(origin, departure_date, arrival_date, passengers, budget, airport_code)).body)
+        @array_flight= parse_api_response(parsed_data_den)
+        @flight = @array_flight[0]
+        @cheapest_flights << @flight
       end
 
-      hotels = city[1]
-      hotels.each do |hotel|
-        p hotel
+
+      ResponseFlightData.delete_all
+      ResponseFlightData.reset_pk_sequence
+
+      @airports = []
+
+      @cheapest_flights.each do |flight|
+          flight_data = ResponseFlightData.new({saleTotal: flight["saleTotal"], carrier: flight["carrier"], arrival_time_when_leaving_home: flight["arrival_time_when_leaving_home"], departure_time_when_leaving_home: flight["departure_time_when_leaving_home"], arrival_time_when_coming_home: flight["arrival_time_when_coming_home"], departure_time_when_coming_home: flight["departure_time_when_coming_home"], origin: flight["origin"], destination: flight["destination"]})
+          flight_data.save
+          @airports << AirportHelperTable.find_by(airport_code: flight_data.destination)
       end
+
+
+
+      @hash = Gmaps4rails.build_markers(@airports) do |airport, marker|
+
+        marker.lat(airport.latitude)
+        marker.lng(airport.longitude)
+
+        flight = @cheapest_flights.find {|flight| flight["destination"] == airport.airport_code }
+        index = @cheapest_flights.find_index(flight)
+        marker.infowindow render_to_string(:partial => "/trip/flight_details", locals: { flight: flight, index: index})
+        marker.picture({
+                    :url => airport.image_url,
+                    :width   => 32,
+                    :height  => 32
+                   })
+
+      end
+
+      render "trip_details"
     end
-
-
-
-    @hash = Gmaps4rails.build_markers(@airports) do |airport, marker|
-
-      marker.lat(airport.latitude)
-      marker.lng(airport.longitude)
-      marker.infowindow airport.location
-      marker.picture({
-                  :url => airport.image_url,
-                  :width   => 32,
-                  :height  => 32
-                 })
-
-    end
-
-
-
-    render "trip_details"
   end
 
 

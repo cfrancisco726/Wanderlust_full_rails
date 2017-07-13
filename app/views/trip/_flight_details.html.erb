@@ -1,0 +1,71 @@
+<style>
+.gm-style-iw {
+  background-color: #c5d1d0;
+    background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+}
+.gm-style-iw img {
+    width: 300px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.d-flex.w-100.justify-content-between h4.mb-1 black {
+    text-align: center;
+}
+button.btn.btn-success.submit {
+    background: #2c3d69;
+    color: white;
+    margin: 20px auto;
+    display: block;
+}
+
+button.btn.btn-success.submit a {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.d-flex.w-100.justify-content-between p {
+    text-align: center;
+}
+
+.d-flex.w-100.justify-content-between h4 {
+    text-align: center;
+}
+.bottom-container-links a.btn.btn-success {
+    background: #2c3d69;
+    font-size: 11px;
+}
+</style>
+
+
+    <div class="list-group">
+
+
+        <div class="d-flex w-100 justify-content-between" style="color: #fff;">
+
+          <h4 class="mb-1 black">Flights to <%=convert_airportcode_to_destination(flight["destination"])%></h4>
+
+              <p class="mb-1 black ticket-price">Ticket price: <%= flight["saleTotal"] %></p>
+              <p class="mb-1 black departure-flight-time"><%= flights_date(flight["departure_time_when_leaving_home"])%> ----- <%= flights_date(flight["arrival_time_when_leaving_home"]) %></p>
+              <p class="mb-1 black"><%= flight["origin"] %> ----------------------------- <%= flight["destination"] %></p>
+              <p class="mb-1 black arrival-flight-time"><%= flights_date(flight["departure_time_when_coming_home"])%> ----- <%= flights_date(flight["arrival_time_when_coming_home"]) %></p>
+              <p class="mb-1 black"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
+              <% if logged_in? %>
+
+              <button class="btn btn-success submit"><a href="/users/<%=index+1%>/savetrip" class="save-flight-button">Save flight to wishlist<a></button>
+              <% end %>
+
+        <div class="bottom-container-links">
+          <a class="btn btn-success" href="/trip/<%=1+index%>">Attractions in <%=convert_airportcode_to_destination(flight["destination"]) %></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/hotels">Hotels in <%=convert_airportcode_to_destination(flight["destination"])%></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/museum">Museums in <%=convert_airportcode_to_destination(flight["destination"])%></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/restaurants">Restaurants in <%=convert_airportcode_to_destination(flight["destination"])%></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/beaches">Beaches in <%=convert_airportcode_to_destination(flight["destination"])%></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/bars">Bars in <%=convert_airportcode_to_destination(flight["destination"])%></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/hotels">Hotels in <%=convert_airportcode_to_destination(flight["destination"])%></a>
+      </div>
+
+      </div>
