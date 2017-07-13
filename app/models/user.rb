@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :save_user_trips
 
   validates :email, :password_digest, :name, presence: true
-  validates :password_digesr, length: { in: 6..20 }
+  validates :password_digest, length: { in: 6..20 }
 
   has_secure_password
 end

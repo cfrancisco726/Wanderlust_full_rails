@@ -1,18 +1,46 @@
+<!-- <div class="errors">
+  <% if @errors %>
+    <%@errors.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+</div> -->
+
+<div style="padding:10px; text-align:center;">
+    <%= bootstrap_form_for(@user, layout: :inline) do |f| %>
+    <div class="form-group center color">
+      <p><%= f.text_field :name %></p>
+    </div>
+    <div class="form-group center color">
+      <p><%= f.email_field :email %></p>
+    </div>
+    <div class="form-group center color">
+      <p><%= f.password_field :password %></p>
+    </div>
+    <br>
+      <p align="center"><%= f.submit "Log In", class: "btn btn-success submit"%></p>
+    <% end %>
+  </div>
 
 
 
 
-<div class="text-center ">
-<%= bootstrap_form_for(@user, layout: :inline) do |f| %>
-<div class="field color">
-  <p class="color "><%= f.text_field :name %></p><br>
-</div>
-<div class="field color">
-  <p class="color "><%= f.email_field :email %></p><br>
-</div>
-<div class="field color">  
-  <p class="color "><%= f.password_field :password %></p><br>
-</div>  
-  <%= f.submit "Log In", class: "btn btn-success"%>
-<% end %>
-</div>
+<!-- <form class="form-inline">
+  <div id="form">
+  <div class="text-center">
+    <%= bootstrap_form_for(@user, layout: :inline) do |f| %>
+    <div class="form-group center color">
+      <p class="color"><%= f.text_field :name %></p><br>
+    </div>
+    <div class="form-group center color">
+      <p class="color"><%= f.email_field :email %></p><br>
+    </div>
+    <div class="form-group center color">
+      <p class="color"><%= f.password_field :password %></p><br>
+    </div>
+    <br>
+      <%= f.submit "Log In", class: "btn btn-success submit"%>
+    <% end %>
+  </div>
+<div id="form">
+</form> -->

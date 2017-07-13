@@ -1,9 +1,16 @@
+<div class="errors">
+  <% if @errors %>
+    <%@errors.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+</div>
 
-
-<div class="text-center">
+<div class="text-center color">
 <%= bootstrap_form_for(@user, layout: :inline) do |f| %>
   <%= f.email_field :email %>
   <%= f.password_field :password %>
-  <%= f.submit "Log In", class: "btn btn-success"%>
+    <br>
+  <%= f.submit "Log In", class: "btn btn-success submit"%>
 <% end %>
 </div>
