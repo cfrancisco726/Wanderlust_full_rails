@@ -33,72 +33,6 @@ class ApplicationController < ActionController::Base
       }
   end
 
-  def req_body_lax(origin, departure_date, arrival_date, passengers, budget)
-
-    if origin != "lax" || "LAX"
-      {"request": {
-            "passengers": { "adultCount": passengers.to_i },
-            "slice": [{
-                "origin": origin,
-                "destination": ['LAX'],
-                "date": departure_date,
-                "maxStops": 0,
-              },
-              {
-                "origin": ['LAX'],
-                "destination": origin,
-                "date": arrival_date
-              }
-            ],
-            "maxPrice": "USD#{budget}",
-            "solutions": "10"
-          }
-        }
-    else
-      {"request": {
-            "passengers": { "adultCount": passengers.to_i },
-            "slice": [{
-                "origin": origin,
-                "destination": ['LAX'],
-                "date": departure_date,
-                "maxStops": 0,
-              },
-              {
-                "origin": ['LAX'],
-                "destination": origin,
-                "date": arrival_date
-              }
-            ],
-            "maxPrice": "USD#{budget}",
-            "solutions": "10"
-          }
-        }
-      end
-    end
-
-  def req_body_mia(origin, departure_date, arrival_date, passengers, budget)
-    {"request": {
-          "passengers": { "adultCount": passengers.to_i },
-          "slice": [{
-              "origin": origin,
-              "destination": ['MIA'],
-              "date": departure_date,
-              "maxStops": 0,
-            },
-            {
-              "origin": ['MIA'],
-              "destination": origin,
-              "date": arrival_date
-            }
-          ],
-          "maxPrice": "USD#{budget}",
-          "solutions": "10"
-        }
-      }
-  end
-
-
-
   def api_call(body)
 
     RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCRc7Fubn68ipT_1TnO8GrpuaHbUHI2how',
@@ -113,10 +47,10 @@ class ApplicationController < ActionController::Base
       flight_details = {}
       flight_details["saleTotal"]= trip["saleTotal"]
       flight_details["carrier"] = trip["slice"][0]["segment"][0]["flight"]["carrier"]
-      flight_details["departure_time_when_leaving_home"] = trip["slice"][0]["segment"][0]["leg"][0]["departureTime"]
-      flight_details["arrival_time_when_leaving_home"] = trip["slice"][0]["segment"][0]["leg"][0]["arrivalTime"]
-      flight_details["departure_time_when_coming_home"] = trip["slice"][1]["segment"][0]["leg"][0]["departureTime"]
-      flight_details["arrival_time_when_coming_home"] = trip["slice"][1]["segment"][0]["leg"][0]["arrivalTime"]
+      flight_details["departure_time_when_leaving_home"] = trip["slice"][1]["segment"][0]["leg"][0]["departureTime"]
+      flight_details["arrival_time_when_leaving_home"] = trip["slice"][1]["segment"][0]["leg"][0]["arrivalTime"]
+      flight_details["departure_time_when_coming_home"] = trip["slice"][0]["segment"][0]["leg"][0]["departureTime"]
+      flight_details["arrival_time_when_coming_home"] = trip["slice"][0]["segment"][0]["leg"][0]["arrivalTime"]
       flight_details["origin"] = trip["slice"][0]["segment"][0]["leg"][0]["origin"]
       flight_details["destination"] = trip["slice"][0]["segment"][0]["leg"][0]["destination"]
       trips << flight_details
