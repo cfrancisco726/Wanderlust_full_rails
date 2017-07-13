@@ -1,18 +1,16 @@
 
-
+<div class="jumbotron text-center">
+    <h1 class="center logo"><img src="../assets/logo_hp.png" alt="Wanderlust" width="20%"></img></h1>
+    <p class="center color"> Your next adventure is just a budget away</p>
+</div>
 
 
 <div class="text-center ">
+
 <%= bootstrap_form_for(@user, layout: :inline) do |f| %>
-<div class="field color">
-  <p class="color "><%= f.text_field :name %></p><br>
-</div>
-<div class="field color">
-  <p class="color "><%= f.email_field :email %></p><br>
-</div>
-<div class="field color">  
-  <p class="color "><%= f.password_field :password %></p><br>
-</div>  
-  <%= f.submit "Log In", class: "btn btn-success"%>
+  <%= f.text_field :name, hide_label: true,  placeholder: "name"%>
+  <%= f.email_field :email, hide_label: true, placeholder: "email"%>
+  <%= f.password_field :password, hide_label: true, placeholder: "password" %>
+  <%= f.submit "Register", class: "btn btn-success"%>
 <% end %>
 </div>
