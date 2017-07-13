@@ -22,6 +22,18 @@ class TripController < ApplicationController
     render "google_place"
   end
 
+  # def google_hotels
+  #   @flight_data = ResponseFlightData.find(params[:trip_id])
+  #
+  #   @client = GooglePlaces::Client.new("AIzaSyC6QVsR2_7tYbCiMCIWqEwg_6_EV6XHBIE")
+  #
+  #   @hotel_details = @client.spots_by_query("#{params[:location]} by #{convert_airportcode_to_destination(@flight_data[:destination])}", :types => ['hotel'], :exclude => ['cafe', 'establishment')
+  #
+  #   @attraction_photo = @attractions
+  #
+  #   render "google_place"
+  # end
+
   def index
     @cheapest_flights = ResponseFlightData.all
     # binding.pry
