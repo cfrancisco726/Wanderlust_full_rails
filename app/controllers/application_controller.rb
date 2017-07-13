@@ -28,31 +28,53 @@ class ApplicationController < ActionController::Base
             }
           ],
           "maxPrice": "USD#{budget}",
-          "solutions": "1"
+          "solutions": "10"
         }
       }
   end
 
   def req_body_lax(origin, departure_date, arrival_date, passengers, budget)
-    {"request": {
-          "passengers": { "adultCount": passengers.to_i },
-          "slice": [{
-              "origin": origin,
-              "destination": ['LAX'],
-              "date": departure_date,
-              "maxStops": 0,
-            },
-            {
-              "origin": ['LAX'],
-              "destination": origin,
-              "date": arrival_date
-            }
-          ],
-          "maxPrice": "USD#{budget}",
-          "solutions": "1"
+
+    if origin != "lax" || "LAX"
+      {"request": {
+            "passengers": { "adultCount": passengers.to_i },
+            "slice": [{
+                "origin": origin,
+                "destination": ['LAX'],
+                "date": departure_date,
+                "maxStops": 0,
+              },
+              {
+                "origin": ['LAX'],
+                "destination": origin,
+                "date": arrival_date
+              }
+            ],
+            "maxPrice": "USD#{budget}",
+            "solutions": "10"
+          }
         }
-      }
-  end
+    else
+      {"request": {
+            "passengers": { "adultCount": passengers.to_i },
+            "slice": [{
+                "origin": origin,
+                "destination": ['LAX'],
+                "date": departure_date,
+                "maxStops": 0,
+              },
+              {
+                "origin": ['LAX'],
+                "destination": origin,
+                "date": arrival_date
+              }
+            ],
+            "maxPrice": "USD#{budget}",
+            "solutions": "10"
+          }
+        }
+      end
+    end
 
   def req_body_mia(origin, departure_date, arrival_date, passengers, budget)
     {"request": {
@@ -78,8 +100,9 @@ class ApplicationController < ActionController::Base
 
 
   def api_call(body)
-  
+
     RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCRc7Fubn68ipT_1TnO8GrpuaHbUHI2how',
+
     body.to_json, :content_type => :json
   end
 
@@ -173,31 +196,10 @@ class ApplicationController < ActionController::Base
      hotel_details
   end
 
-def autocomplete(term)
-	base_url = "http://api.sandbox.amadeus.com/v1.2/airports/autocomplete?apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe&term=${term}"
-	data = open(base_url).read
-	response = JSON.parse(data, headers: true, header_converters: :symbol)
-end
-
-# works in browswer not in terminal
-# def flight_query(starting, departure_date, returning_date, budget)
-# 	base_url = "http://api.sandbox.amadeus.com/v1.2/flights/inspiration-search?origin=#{starting}&departure_date=#{departure_date}--#{returning_date}&max_price=${budget}&apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe"
-#     data = open(base_url).read
-#     response = JSON.parse(data, headers: true, header_converters: :symbol)
-# end
-#
-# def flights_parse_response(flight_query)
-# 	flight_details = {}
-# 			flight_query.each do |key, value|
-# 	  	value.each do |key1, value1|
-# 			hotel_details["destination"] = key1["destination"]
-# 			hotel_details["departure_date"] = key1["departure_date"]
-# 			hotel_details["return_date"] = key1["return_date"]
-# 			hotel_details["price"] = key1["price"]
-# 			hotel_details["airline"] = key1["airline"]
-# 			end
-#   	end
-# 		puts flight_details
-# end
+  def autocomplete(term)
+  	base_url = "http://api.sandbox.amadeus.com/v1.2/airports/autocomplete?apikey=P9Xuv7e4586ThMfR3nHlkojwJCR7ZHfe&term=${term}"
+  	data = open(base_url).read
+  	response = JSON.parse(data, headers: true, header_converters: :symbol)
+  end
 
 end
