@@ -3,10 +3,8 @@ Rails.application.routes.draw do
 
   resources :sessions
 
-  resources :trip, only: [:show, :create, :index]
-  resources :trip do
-    resources :hotels, only: [:index]
-  end
+  resources :trip, only: [:show, :create, :index, :new]
+
 
    # get '/users/logout' to: 'users#logout'
   # post '/users/login' to: 'users#create_session'

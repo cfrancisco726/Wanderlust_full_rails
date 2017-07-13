@@ -39,6 +39,8 @@ button.btn.btn-success.submit a {
     font-size: 11px;
 }
 </style>
+
+
     <div class="list-group">
 
 
@@ -53,11 +55,15 @@ button.btn.btn-success.submit a {
               <p class="mb-1 black"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
               <% if logged_in? %>
 
-              <button class="btn btn-success submit"><a href="/users/<%=index+1%>/savetrip" class="save-flight-button">Save flight to wishlist<a></button>
+                  <button class="btn btn-success submit">
+                    <a href="/users/<%=index+1%>/savetrip" class="save-flight-button" >Save flight to wishlist</a>
+                  </button>
+
               <% end %>
 
         <div class="bottom-container-links">
           <a class="btn btn-success" href="/trip/<%=1+index%>">Attractions in <%=convert_airportcode_to_destination(flight["destination"]) %></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/hotels">Hotels in <%=convert_airportcode_to_destination(flight["destination"])%></a>
           <a class="btn btn-success" href="/trip/<%=1+index%>/locations/museum">Museums in <%=convert_airportcode_to_destination(flight["destination"])%></a>
           <a class="btn btn-success" href="/trip/<%=1+index%>/locations/restaurants">Restaurants in <%=convert_airportcode_to_destination(flight["destination"])%></a>
           <a class="btn btn-success" href="/trip/<%=1+index%>/locations/beaches">Beaches in <%=convert_airportcode_to_destination(flight["destination"])%></a>

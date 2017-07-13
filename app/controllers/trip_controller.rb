@@ -60,6 +60,7 @@ class TripController < ApplicationController
       @cheapest_flights = []
       #
       #
+
       ['DEN','LAX', 'MIA', 'FCO', 'LHR', 'SJO', 'CDG'].each do |airport_code|
         parsed_data_den = JSON.parse(api_call(req_body(origin, departure_date, arrival_date, passengers, budget, airport_code)).body)
         @array_flight= parse_api_response(parsed_data_den)
@@ -96,11 +97,9 @@ class TripController < ApplicationController
                    })
 
       end
-
       render "trip_details"
     end
   end
-
 
 
   private
