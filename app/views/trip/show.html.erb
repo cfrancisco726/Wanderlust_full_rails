@@ -7,7 +7,9 @@
   <a href="/users/<%=@flight_data.id%>/savetrip">Save trip<a>
 <%end%><br>
 
+
 <div class="container">
+  <p class="back"><%= link_to 'Edit search', url_for(:back) %></p>
     <div class="row">
             <% @attractions.each do |attraction| %>
               <div class="col-md-4" style="min-height: 300px;">

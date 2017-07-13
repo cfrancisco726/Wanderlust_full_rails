@@ -39,6 +39,8 @@ button.btn.btn-success.submit a {
     font-size: 11px;
 }
 </style>
+
+
     <div class="list-group">
 
 
@@ -58,6 +60,7 @@ button.btn.btn-success.submit a {
 
         <div class="bottom-container-links">
           <a class="btn btn-success" href="/trip/<%=1+index%>">Attractions in <%=convert_airportcode_to_destination(flight["destination"]) %></a>
+          <a class="btn btn-success" href="/trip/<%=1+index%>/locations/hotels">Hotels in <%=convert_airportcode_to_destination(flight["destination"])%></a>
           <a class="btn btn-success" href="/trip/<%=1+index%>/locations/museum">Museums in <%=convert_airportcode_to_destination(flight["destination"])%></a>
           <a class="btn btn-success" href="/trip/<%=1+index%>/locations/restaurants">Restaurants in <%=convert_airportcode_to_destination(flight["destination"])%></a>
           <a class="btn btn-success" href="/trip/<%=1+index%>/locations/beaches">Beaches in <%=convert_airportcode_to_destination(flight["destination"])%></a>
