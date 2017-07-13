@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  $('.save-flight').on("click", function(e){
+  $('.save').on("click", function(e){
     e.preventDefault();
+    
   })
-}
+})

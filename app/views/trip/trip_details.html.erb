@@ -90,7 +90,7 @@ window.onload = function () {
               <p class="mb-1"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
 
               <% if logged_in? %>
-              <p class="btn btn-success submit"><a href="/users/<%= city_index*10 + index+1%>/savetrip" class="list-group-item list-group-item-action">Save flight to wishlist<a></p>
+              <p class="save btn btn-success submit"><a href="/users/<%= city_index*10 + index+1%>/savetrip" class="save list-group-item list-group-item-action">Save flight to wishlist<a></p>
               <% end %>
 
             <% end %>
