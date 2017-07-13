@@ -100,3 +100,43 @@ body {
 .back a{
     color: white;
     }
+
+.gm-style-iw {
+  background-color: #c5d1d0;
+    background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+}
+.gm-style-iw img {
+    width: 300px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.d-flex.w-100.justify-content-between h4.mb-1 black {
+    text-align: center;
+}
+button.btn.btn-success.submit {
+    background: #2c3d69;
+    color: white;
+    margin: 20px auto;
+    display: block;
+}
+
+button.btn.btn-success.submit a {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.d-flex.w-100.justify-content-between p {
+    text-align: center;
+}
+
+.d-flex.w-100.justify-content-between h4 {
+    text-align: center;
+}
+.bottom-container-links a.btn.btn-success {
+    background: #2c3d69;
+    font-size: 11px;
+}    
