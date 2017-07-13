@@ -22,17 +22,7 @@ class TripController < ApplicationController
     render "google_place"
   end
 
-  # def google_hotels
-  #   @flight_data = ResponseFlightData.find(params[:trip_id])
-  #
-  #   @client = GooglePlaces::Client.new("AIzaSyC6QVsR2_7tYbCiMCIWqEwg_6_EV6XHBIE")
-  #
-  #   @hotel_details = @client.spots_by_query("#{params[:location]} by #{convert_airportcode_to_destination(@flight_data[:destination])}", :types => ['hotel'], :exclude => ['cafe', 'establishment')
-  #
-  #   @attraction_photo = @attractions
-  #
-  #   render "google_place"
-  # end
+
 
   def index
     @cheapest_flights = ResponseFlightData.all
@@ -58,14 +48,14 @@ class TripController < ApplicationController
     else
 
       @cheapest_flights = []
-      #
-      #
+
 
       ['DEN','LAX', 'MIA', 'FCO', 'LHR', 'SJO', 'CDG'].each do |airport_code|
-        parsed_data_den = JSON.parse(api_call(req_body(origin, departure_date, arrival_date, passengers, budget, airport_code)).body)
-        @array_flight= parse_api_response(parsed_data_den)
-        @flight = @array_flight[0]
-        @cheapest_flights << @flight
+        parsed_data = JSON.parse(api_call(req_body(origin, departure_date, arrival_date, passengers, budget, airport_code)).body)
+        if parsed_data["trips"]["tripOption"] != nil
+          @array_flight= parse_api_response(parsed_data)
+          @cheapest_flights << @array_flight[0]
+        end
       end
 
 
