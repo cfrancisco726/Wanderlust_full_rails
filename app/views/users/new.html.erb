@@ -8,9 +8,9 @@
 <div class="text-center ">
 
 <%= bootstrap_form_for(@user, layout: :inline) do |f| %>
-  <%= f.text_field :name, hide_label: true,  placeholder: "name"%>
-  <%= f.email_field :email, hide_label: true, placeholder: "email"%>
-  <%= f.password_field :password, hide_label: true, placeholder: "password" %>
+  <%= f.text_field :name, hide_label: true,  placeholder: "name", required: true%>
+  <%= f.email_field :email, hide_label: true, placeholder: "email", required: true%>
+  <%= f.password_field :password, hide_label: true, placeholder: "password" , required: true%>
   <%= f.submit "Register", class: "btn btn-success"%>
 <% end %>
 </div>

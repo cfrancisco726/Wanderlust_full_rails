@@ -5,8 +5,8 @@
 
 <div class="text-center ">
 <%= bootstrap_form_for(@user, layout: :inline) do |f| %>
-  <%= f.email_field :email, hide_label: true, placeholder: "email"%>
-  <%= f.password_field :password, hide_label: true, placeholder: "password" %>
+  <%= f.email_field :email, hide_label: true, placeholder: "email", required: true%>
+  <%= f.password_field :password, hide_label: true, placeholder: "password", required: true %>
   <%= f.submit "Log In", class: "btn btn-success"%>
 <% end %>
 </div>
