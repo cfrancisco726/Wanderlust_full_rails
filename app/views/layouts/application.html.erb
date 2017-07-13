@@ -46,49 +46,15 @@
           </ul>
           <% end %>
 
-      <!-- <ul class="nav navbar-nav navbar-right">
-          <% if logged_in? %>
-            <li><a href = "/logout">Log out</a></li>
-            <li><a href = "/users/<%= current_user.id %>"><%= current_user.name %></a></li>
-            <li><%= link_to 'Home', root_path %></li>
-          <% else %>
-            <li><a href = "/login">Log in</a></li>
-            <li><a href = "/users/new">Register</a></li>
-            <li><%= link_to 'Home', root_path %></li>
-          <% end %>
-      </ul> -->
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-<!--
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <img alt="Brand" src="...">
-      </a>
+
     </div>
   </div>
 </nav>
-  <% if logged_in? %>
-    <ul>
-      <li><a href = "/logout">Log out</a></li>
-      <li><a href = "/users/<%= current_user.id %>"><%= current_user.name %></a></li>
-      <li><%= link_to 'Home', root_path %></li>
-    </ul>
-    <% else %>
-    <ul>
-      <li><a href = "/login">Log in</a></li>
-      <li><a href = "/users/new">Register</a></li>
-      <li><%= link_to 'Home', root_path %></li>
-    </ul>
-    <% end %>
-</nav>
- -->
-  <div class="jumbotron text-center">
-    <h1 class="center logo"><img src="../assets/logo_hp.png" alt="Wanderlust" width="20%"></img></h1>
-    <p class="center color"> Your next adventure is just a budget away</p>
-    </div>
+
+
+
+
+
 
 
     <%= yield %>

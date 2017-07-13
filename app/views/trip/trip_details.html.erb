@@ -1,6 +1,4 @@
 
-
-
 <div class="container">
   <p class="back"><%= link_to 'Back', url_for(:back) %></p>
 
@@ -32,7 +30,7 @@ window.onload = function () {
             google.maps.event.addListener(marker, "click", function (e) {
               var imgUrl = "/assets/" + data.picture.url
                 infoWindow.setContent(`<div><div> <img src=${imgUrl} alt="Smiley face" height="100" width="200"> </div> ${data.infowindow}</div>` );
-              
+
                 infoWindow.open(map, marker);
 
             });
@@ -54,7 +52,7 @@ window.onload = function () {
   position: relative;
 }
 #map{
-    height: 500px;
+    height: 750px;
     overflow: hidden;
     padding-bottom: 22.25%;
     padding-top: 30px;
