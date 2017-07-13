@@ -55,7 +55,10 @@ button.btn.btn-success.submit a {
               <p class="mb-1 black"><%= flight["destination"] %> -----------------------------<%= flight["origin"] %></p>
               <% if logged_in? %>
 
-              <button class="btn btn-success submit"><a href="/users/<%=index+1%>/savetrip" class="save-flight-button">Save flight to wishlist<a></button>
+                  <button class="btn btn-success submit">
+                    <a href="/users/<%=index+1%>/savetrip" class="save-flight-button" >Save flight to wishlist</a>
+                  </button>
+
               <% end %>
 
         <div class="bottom-container-links">
