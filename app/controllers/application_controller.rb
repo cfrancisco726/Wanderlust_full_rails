@@ -47,10 +47,10 @@ class ApplicationController < ActionController::Base
       flight_details = {}
       flight_details["saleTotal"]= trip["saleTotal"]
       flight_details["carrier"] = trip["slice"][0]["segment"][0]["flight"]["carrier"]
-      flight_details["departure_time_when_leaving_home"] = trip["slice"][1]["segment"][0]["leg"][0]["departureTime"]
-      flight_details["arrival_time_when_leaving_home"] = trip["slice"][1]["segment"][0]["leg"][0]["arrivalTime"]
-      flight_details["departure_time_when_coming_home"] = trip["slice"][0]["segment"][0]["leg"][0]["departureTime"]
-      flight_details["arrival_time_when_coming_home"] = trip["slice"][0]["segment"][0]["leg"][0]["arrivalTime"]
+      flight_details["departure_time_when_leaving_home"] = trip["slice"][0]["segment"][0]["leg"][0]["departureTime"]
+      flight_details["arrival_time_when_leaving_home"] = trip["slice"][0]["segment"][0]["leg"][0]["arrivalTime"]
+      flight_details["departure_time_when_coming_home"] = trip["slice"][1]["segment"][0]["leg"][0]["departureTime"]
+      flight_details["arrival_time_when_coming_home"] = trip["slice"][1]["segment"][0]["leg"][0]["arrivalTime"]
       flight_details["origin"] = trip["slice"][0]["segment"][0]["leg"][0]["origin"]
       flight_details["destination"] = trip["slice"][0]["segment"][0]["leg"][0]["destination"]
       trips << flight_details
@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
   end
 
   def flights_date(flight_time)
-    DateTime.parse(flight_time).strftime("%a %b %w at  %H:%M %p")
+    DateTime.parse(flight_time).strftime("%a %b %e at  %H:%M %p")
   end
 
   def convert_airportcode_to_destination(airport_code)
