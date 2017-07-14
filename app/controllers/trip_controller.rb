@@ -50,7 +50,7 @@ class TripController < ApplicationController
       @cheapest_flights = []
 
 
-      ['DEN','LAX', 'MIA', 'FCO', 'LHR', 'SJO', 'CDG'].each do |airport_code|
+      ['DEN','LAX', 'MIA', 'FCO', 'LHR', 'SJO', 'CDG', 'PRG', 'DXB', 'JTR', 'HNL', 'DPS', 'YVR', 'HKT', 'EAS', 'PPT', 'FAT', 'SJO', 'SLC', 'JAC', 'CLO', 'CPT', 'LOS', 'GIG', 'MNL'].each do |airport_code|
         parsed_data = JSON.parse(api_call(req_body(origin, departure_date, arrival_date, passengers, budget, airport_code)).body)
         if parsed_data["trips"]["tripOption"] != nil
           @array_flight= parse_api_response(parsed_data)
