@@ -1,7 +1,9 @@
-
+<div class="jumbotron text-center">
+  <h1 class="center logo"><img src="../assets/logo_hp.png" alt="Wanderlust" width="20%"></img></h1>
+  <p class="center color"> Your next adventure is just a budget away</p>
+  </div>
 
 <div class="container">
-  <p class="back"><%= link_to 'Back', url_for(:back) %></p>
   <br>
     <div class="row">
             <% @attractions.each do |attraction| %>
@@ -18,9 +20,9 @@
                     <h4 class="media-heading"><%= attraction.name %></h4>
                     <%= attraction.formatted_address %>
                     <br>
-                    <p>Raiting: <%= attraction.rating %></p>
+                    <p>Rating: <%= attraction.rating %></p>
                     <br>
-                    <%= attraction.url %>
+                    <p><%= attraction.url %></p>
                     <!-- <%= attraction.types %> -->
                     <%= attraction.formatted_phone_number %>
                   </div>

@@ -1,15 +1,9 @@
-  <div class="jumbotron text-center">
-    <h1 class="center logo"><img src="../assets/logo_hp.png" alt="Wanderlust" width="20%"></img></h1>
-    <p class="center color"> Your next adventure is just a budget away</p>
-    </div>
+<div class="jumbotron text-center">
+  <h1 class="center logo"><img src="../assets/logo_hp.png" alt="Wanderlust" width="20%"></img></h1>
+  <p class="center color"> Your next adventure is just a budget away</p>
+</div>
 
-<%if logged_in? %>
-  <a href="/users/<%=@flight_data.id%>/savetrip">Save trip<a>
-<%end%><br>
-
-
-<div class="container">
-  <p class="back"><%= link_to 'Edit search', url_for(:back) %></p>
+<div class="list-row">
     <div class="row">
             <% @attractions.each do |attraction| %>
               <div class="col-md-4" style="min-height: 300px;">
