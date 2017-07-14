@@ -102,8 +102,7 @@ body {
     }
 
 .gm-style-iw {
-  background-color: #c5d1d0;
-    background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+  background-color: #efefef;
 }
 .gm-style-iw img {
     width: 300px;
@@ -139,4 +138,12 @@ button.btn.btn-success.submit a {
 .bottom-container-links a.btn.btn-success {
     background: #2c3d69;
     font-size: 11px;
-}    
+    margin: 4px;
+}
+
+.list-group {
+  max-width:420px;
+  text-align:center;
+  text-transform:uppercase;
+  width:100%;
+}
