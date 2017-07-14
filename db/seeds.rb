@@ -18,7 +18,7 @@ flights = {
     "DXB"  => {"location"=>"Dubai","lat" => 25.2048, "lng" => 55.2708, "image_url"=>"Dubai.jpg"},
     "JTR" => {"location"=>"Santorini","lat" => 36.3932, "lng" => 25.4615, "image_url"=>"Santorini.jpg"},
     "HNL" => {"location"=>"Honolulu","lat" => 21.3069, "lng" => -157.8583, "image_url"=>"Honolulu.jpg"},
-    "DPS" => {"location"=>"Bali","lat" => -8.409518, "lng" => 115.188919, "image_url"=>"Bali.jpg"}, 
+    "DPS" => {"location"=>"Bali","lat" => -8.409518, "lng" => 115.188919, "image_url"=>"Bali.jpg"},
     "YVR"=> {"location"=>"Vancouver","lat" => 49.2827, "lng" => -123.1207, "image_url"=>"Vancouver.jpg"},
     "HKT" =>{"location"=>"Phuket","lat" => 7.9519, "lng" => 98.3381, "image_url"=>"Phuket.jpg"},
     "EAS"=>{"location"=>"San Sebastian","lat" => 43.3183, "lng" => -1.9812, "image_url"=>"San-Sebastian.jpg"},
@@ -26,7 +26,12 @@ flights = {
     "FAT"=>{"location"=>"Yosemite","lat" => 37.8651, "lng" => -119.5383, "image_url"=>"Yosemite.jpg"},
     "SJO"=>{"location"=>"Costa Rica","lat" => 9.7489, "lng" => -83.7534, "image_url"=>"CostaRica.jpg"},
     "SLC" =>{"location"=>"Salt Lake City","lat" => 40.7608, "lng" => -111.8910, "image_url"=>"saltlakecity.jpg"},
-    "JAC" => {"location"=>"Jackson Hole","lat" => 43.4799, "lng" => -110.7624, "image_url"=>"jacksonhole.jpg"}
+    "JAC" => {"location"=>"Jackson Hole","lat" => 43.4799, "lng" => -110.7624, "image_url"=>"jacksonhole.jpg"},
+    "CLO" => {"location"=>"Cali", "lat" => 3.4516, "lng" => 76.5320, "image_url"=> "cali.jpg"},
+    "CPT" => {"location"=>"Capetown", "lat" => -33.9249, "lng" => 18.4241, "image_url"=> "capetown.jpg"},
+    "LOS" => {"location"=>"Lagos", "lat" => 6.465422, "lng" => 3.406448, "image_url"=> "lagos.jpg"},
+    "GIG" => {"location"=>"Rio De Janeiro", "lat" => -22.970722, "lng" => -43.182365, "image_url"=> "rio.jpg"},
+    "MNL" => {"location"=>"Manila", "lat" => 14.599512, "lng" => 120.984222, "image_url"=> "manila.jpg"}
   }
 
   flights.each do |flight, stats|
