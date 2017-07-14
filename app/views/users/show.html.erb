@@ -179,11 +179,11 @@
        <div class="flight-info row">
          <div class="col-xs-6">
            <p>Departure Time</p>
-           <h4><%= flights_date(flight["departure_time_when_coming_home"])%></h4>
+           <h4><%= flights_date(flight["departure_time_when_leaving_home"])%></h4>
          </div>
          <div class="col-xs-6">
            <p>Arrival Time</p>
-           <h4><%= flights_date(flight["arrival_time_when_coming_home"]) %></h4>
+           <h4><%= flights_date(flight["arrival_time_when_leaving_home"]) %></h4>
          </div>
        </div>
 
@@ -221,11 +221,11 @@
         <div class="flight-info row">
           <div class="col-xs-6">
             <p>Departure Time</p>
-            <h4><%= flights_date(flight["departure_time_when_leaving_home"])%></h4>
+            <h4><%= flights_date(flight["departure_time_when_coming_home"])%></h4>
           </div>
           <div class="col-xs-6">
             <p>Arrival Time</p>
-            <h4><%= flights_date(flight["arrival_time_when_leaving_home"]) %></h4>
+            <h4><%= flights_date(flight["arrival_time_when_coming_home"]) %></h4>
           </div>
         </div>
 
