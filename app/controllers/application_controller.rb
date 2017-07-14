@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
             }
           ],
           "maxPrice": "USD#{budget}",
-          "solutions": "10"
+          "solutions": "1"
         }
       }
   end
