@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+binding.pry
 flights = {
     "DEN" => {"location" => "Denver", "lat" => 39.8561, "lng" => -104.6737, "image_url"=>"denver.jpg"},
     "LAX" => {"location"=>"Los Angeles","lat" => 33.9416, "lng" => -118.4085, "image_url"=>"LAX.jpg"},
@@ -34,6 +34,8 @@ flights = {
     "MNL" => {"location"=>"Manila", "lat" => 14.599512, "lng" => 120.984222, "image_url"=> "manila.jpg"}
   }
 
-  flights.each do |flight, stats|
-AirportHelperTable.create(airport_code: flight, location: stats["location"], longitude: stats["lng"], latitude: stats["lat"], image_url: stats["image_url"])
+
+
+flights.each do |flight, stats|
+  AirportHelperTable.create(airport_code: flight, location: stats["location"], longitude: stats["lng"], latitude: stats["lat"], image_url: stats["image_url"])
 end
