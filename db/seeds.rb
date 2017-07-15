@@ -5,12 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-binding.pry
+
 flights = {
     "DEN" => {"location" => "Denver", "lat" => 39.8561, "lng" => -104.6737, "image_url"=>"denver.jpg"},
     "LAX" => {"location"=>"Los Angeles","lat" => 33.9416, "lng" => -118.4085, "image_url"=>"LAX.jpg"},
     "MIA" => {"location"=>"Miami","lat" => 25.7959, "lng" => -80.2870, "image_url"=>"MIAMI.jpg"},
-    "FCO" => {"location"=>"Italy","lat" => 41.7998868, "lng" => 12.246238400000038, "image_url"=>"italy.jpg"},
+    "FCO" => {"location"=>"Italy","lat" => 41.7998868, "lng" => 12.246238400000038, "image_url"=>"Italy.jpg"},
     "SYD" => {"location"=>"Sydney","lat" => -33.8688, "lng" => 151.2093, "image_url"=>"Sydney.jpg"},
     "LHR" => {"location"=>"London","lat" => 51.5074, "lng" => -0.1278, "image_url"=>"london.jpg"},
     "CDG" => {"location"=>"Paris","lat" => 48.8566, "lng" => 2.3522, "image_url"=>"Paris.jpg"},
